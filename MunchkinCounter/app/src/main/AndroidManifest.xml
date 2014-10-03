@@ -9,6 +9,8 @@
         android:theme="@style/AppTheme" >
         <activity
             android:name=".SummaryActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait"
             android:label="@string/summary"
             android:launchMode="singleTop">
             <intent-filter>
@@ -17,6 +19,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".DetailActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait"
             android:label="Player Name"
             android:parentActivityName=".SummaryActivity">
             <meta-data

@@ -74,5 +74,6 @@ public class DetailActivity extends ActionBarActivity {
         strength.setText(Integer.toString(player.getTotal()));
 
         Data.adapter.notifyDataSetChanged();
+        Data.adapter.saveData();
     }
 }

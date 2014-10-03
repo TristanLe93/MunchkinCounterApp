@@ -37,6 +37,9 @@ public class SummaryActivity extends ActionBarActivity {
 
         // set context menu for listView
         registerForContextMenu(playerList);
+
+        // load persistent data if available
+        Data.adapter.readData();
     }
 
 
