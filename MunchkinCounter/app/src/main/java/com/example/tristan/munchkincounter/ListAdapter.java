@@ -10,14 +10,14 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 /**
- * PlayerListAdapter class is used to manage a custom cell in a listview.
+ * ListAdapter class is used to manage a custom cell in a listview.
  */
-public class PlayerListAdapter extends BaseAdapter {
+public class ListAdapter extends BaseAdapter {
 
     private ArrayList<Player> listData;
     private LayoutInflater layoutInflater;
 
-    public PlayerListAdapter(Context context, ArrayList<Player> listData) {
+    public ListAdapter(Context context, ArrayList<Player> listData) {
         this.listData = listData;
         layoutInflater = LayoutInflater.from(context);
     }
@@ -35,6 +35,11 @@ public class PlayerListAdapter extends BaseAdapter {
     @Override
     public long getItemId(int position) {
         return position;
+    }
+
+    public void addNewPlayer(Player p) {
+        listData.add(p);
+        this.notifyDataSetChanged();
     }
 
     /**

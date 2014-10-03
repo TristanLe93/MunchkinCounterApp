@@ -2,7 +2,7 @@
 <resources>
 
     <string name="app_name">MunchkinCounter</string>
-    <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
+    <string name="action_new">Add Player</string>
 
 </resources>
