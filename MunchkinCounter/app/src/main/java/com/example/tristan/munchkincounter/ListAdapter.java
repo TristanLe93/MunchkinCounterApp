@@ -17,8 +17,8 @@ public class ListAdapter extends BaseAdapter {
     private ArrayList<Player> listData;
     private LayoutInflater layoutInflater;
 
-    public ListAdapter(Context context, ArrayList<Player> listData) {
-        this.listData = listData;
+    public ListAdapter(Context context) {
+        listData = new ArrayList<Player>();
         layoutInflater = LayoutInflater.from(context);
     }
 
@@ -28,7 +28,7 @@ public class ListAdapter extends BaseAdapter {
     }
 
     @Override
-    public Object getItem(int position) {
+    public Player getItem(int position) {
         return listData.get(position);
     }
 
@@ -51,7 +51,7 @@ public class ListAdapter extends BaseAdapter {
 
         // set the view holder with textview elements
         if (convertView == null) {
-            convertView = layoutInflater.inflate(R.layout.player_list_cell, null);
+            convertView = layoutInflater.inflate(R.layout.list_cell, null);
             holder = new ViewHolder();
             holder.playerNameView = (TextView)convertView.findViewById(R.id.playerNameText);
             holder.levelView = (TextView)convertView.findViewById(R.id.levelNumberText);

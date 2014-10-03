@@ -1,12 +1,16 @@
 package com.example.tristan.munchkincounter;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.text.InputType;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ListView;
 
@@ -15,19 +19,23 @@ import java.util.ArrayList;
 
 public class SummaryActivity extends ActionBarActivity {
 
-    private ListView playerList;
-    private ListAdapter listAdapter;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_player_summary);
+        setContentView(R.layout.activity_summary);
 
         // set the array adapter to listview
-        ArrayList<Player> players = new ArrayList<Player>();
-        listAdapter = new ListAdapter(this, players);
-        playerList = (ListView)findViewById(R.id.playerList);
-        playerList.setAdapter(listAdapter);
+        Data.adapter = new ListAdapter(this);
+        ListView playerList = (ListView)findViewById(R.id.playerList);
+        playerList.setAdapter(Data.adapter);
+
+        // set onclick listener
+        playerList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View v, int position, long l) {
+                startDetailActivity(position);
+            }
+        });
     }
 
 
@@ -85,6 +93,13 @@ public class SummaryActivity extends ActionBarActivity {
     // add a new player to the listview
     private void addNewPlayer(String name) {
         Player p = new Player(name);
-        listAdapter.addNewPlayer(p);
+        Data.adapter.addNewPlayer(p);
+    }
+
+    private void startDetailActivity(int position) {
+        Intent intent = new Intent(this, DetailActivity.class);
+        intent.putExtra("position", position);
+
+        startActivity(intent);
     }
 }
