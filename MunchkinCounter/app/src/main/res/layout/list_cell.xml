@@ -12,10 +12,10 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Total"
         android:id="@+id/totalText"
-        android:layout_alignParentTop="true"
+        android:layout_marginRight="27dp"
+        android:layout_above="@+id/levelNumberText"
         android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginRight="10dp"/>
+        android:layout_alignParentEnd="true" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -24,20 +24,22 @@
         android:text="Level"
         android:id="@+id/levelText"
         android:layout_toStartOf="@+id/totalText"
+        android:layout_marginRight="27dp"
         android:layout_alignParentTop="true"
-        android:layout_toLeftOf="@+id/totalText"
-        android:layout_marginRight="20dp" />
+        android:layout_toLeftOf="@+id/totalText" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Player Name Text"
+        android:text="Player Name"
         android:id="@+id/playerNameText"
-        android:layout_centerVertical="true"
+        android:textSize="@dimen/player_name"
+        android:layout_below="@+id/levelText"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_marginLeft="10dp"/>
+        android:maxLines="@integer/abc_max_action_buttons"
+        android:layout_marginLeft="5dp"/>
 
     <TextView
         android:layout_width="wrap_content"
@@ -47,7 +49,8 @@
         android:id="@+id/totalNumberText"
         android:layout_below="@+id/totalText"
         android:layout_alignLeft="@+id/totalText"
-        android:layout_alignStart="@+id/totalText" />
+        android:layout_alignStart="@+id/totalText"
+        android:textSize="@dimen/number_size" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -55,6 +58,7 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="20"
         android:id="@+id/levelNumberText"
+        android:textSize="@dimen/number_size"
         android:layout_below="@+id/levelText"
         android:layout_alignLeft="@+id/levelText"
         android:layout_alignStart="@+id/levelText" />

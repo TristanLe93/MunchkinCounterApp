@@ -1,20 +1,18 @@
 package com.example.tristan.munchkincounter;
 
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.text.InputType;
+import android.view.ContextMenu;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ListView;
-
-import java.util.ArrayList;
 
 
 public class SummaryActivity extends ActionBarActivity {
@@ -29,21 +27,31 @@ public class SummaryActivity extends ActionBarActivity {
         ListView playerList = (ListView)findViewById(R.id.playerList);
         playerList.setAdapter(Data.adapter);
 
-        // set onclick listener
+        // set a listener to transition to detail activity when pressed
         playerList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View v, int position, long l) {
                 startDetailActivity(position);
             }
         });
+
+        // set context menu for listView
+        registerForContextMenu(playerList);
     }
 
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.player_summary_actions, menu);
+        getMenuInflater().inflate(R.menu.summary_actions, menu);
         return true;
+    }
+
+    @Override
+    public void onCreateContextMenu(ContextMenu menu, View v,
+                                    ContextMenu.ContextMenuInfo menuInfo) {
+        super.onCreateContextMenu(menu, v, menuInfo);
+        getMenuInflater().inflate(R.menu.context_menu, menu);
     }
 
     @Override
@@ -59,6 +67,17 @@ public class SummaryActivity extends ActionBarActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    @Override
+    public boolean onContextItemSelected(MenuItem item) {
+        AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo)item.getMenuInfo();
+        switch (item.getItemId()) {
+            case R.id.delete:
+                Data.adapter.deletePlayer(info.position);
+                return true;
+            default:
+                return super.onContextItemSelected(item);
+        }
+    }
     // Shows dialog to input new player name
     private void showInputDialog() {
         AlertDialog.Builder alert = new AlertDialog.Builder(this);

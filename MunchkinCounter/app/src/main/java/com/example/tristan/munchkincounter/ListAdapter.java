@@ -42,6 +42,11 @@ public class ListAdapter extends BaseAdapter {
         this.notifyDataSetChanged();
     }
 
+    public void deletePlayer(int position) {
+        listData.remove(position);
+        this.notifyDataSetChanged();
+    }
+
     /**
      * Create the list view cell
      */

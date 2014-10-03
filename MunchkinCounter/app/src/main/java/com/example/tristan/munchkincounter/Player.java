@@ -6,8 +6,7 @@ import java.io.Serializable;
  * Player class contains information of the player's munchkin.
  * All stat changes are performed here.
  */
-public class Player implements Serializable {
-    private static final long serialVersionUID = 1L;
+public class Player {
 
     private String name;
     private int level;
