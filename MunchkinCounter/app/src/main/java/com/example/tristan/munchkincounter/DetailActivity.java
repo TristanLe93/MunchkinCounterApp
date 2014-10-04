@@ -13,6 +13,7 @@ public class DetailActivity extends ActionBarActivity {
     private TextView strength;
     private TextView level;
     private TextView gear;
+    private SoundPoolPlayer sound;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +33,9 @@ public class DetailActivity extends ActionBarActivity {
 
         // assign values to screen
         refreshValues();
+
+        // load sound player
+        sound = new SoundPoolPlayer(this);
     }
 
     @Override
@@ -49,6 +53,7 @@ public class DetailActivity extends ActionBarActivity {
     }
 
     public void btnGearIncrement(View v) {
+        sound.playSound(R.raw.gear1);
         player.incrementGear();
         refreshValues();
     }
@@ -59,6 +64,7 @@ public class DetailActivity extends ActionBarActivity {
     }
 
     public void btnLevelIncrement(View v) {
+        sound.playSound(R.raw.levelUp1);
         player.incrementLevel();
         refreshValues();
     }
