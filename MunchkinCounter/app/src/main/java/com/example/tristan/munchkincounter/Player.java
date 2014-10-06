@@ -11,13 +11,14 @@ public class Player {
     private String name;
     private int level;
     private int gear;
+    private int bonus;
 
     public String getName() {
         return name;
     }
 
     public int getTotal() {
-        return level + gear;
+        return level + gear + bonus;
     }
 
     public int getLevel() {
@@ -26,10 +27,13 @@ public class Player {
 
     public int getGear() { return gear; }
 
+    public int getBonus() { return bonus; }
+
     public Player(String name) {
         this.name = name;
         level = 1;
         gear = 0;
+        bonus = 0;
     }
 
     public void incrementLevel() {
@@ -49,4 +53,8 @@ public class Player {
     public void decrementGear() {
         gear -= 1;
     }
+
+    public void incrementBonus() { bonus += 1; }
+
+    public void decrementBonus() { bonus -= 1; }
 }

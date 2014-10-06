@@ -9,10 +9,12 @@ import android.widget.TextView;
 
 
 public class DetailActivity extends ActionBarActivity {
-    private Player player;
     private TextView strength;
     private TextView level;
     private TextView gear;
+    private TextView bonus;
+
+    private Player player;
     private SoundPoolPlayer sound;
 
     @Override
@@ -30,6 +32,7 @@ public class DetailActivity extends ActionBarActivity {
         strength = (TextView)findViewById(R.id.totalNumberText);
         level = (TextView)findViewById(R.id.levelNumberText);
         gear = (TextView)findViewById(R.id.gearNumberText);
+        bonus = (TextView)findViewById(R.id.bonusNumberText);
 
         // assign values to screen
         refreshValues();
@@ -53,7 +56,7 @@ public class DetailActivity extends ActionBarActivity {
     }
 
     public void btnGearIncrement(View v) {
-        sound.playSound(R.raw.gear1);
+        sound.playGearUpSound();
         player.incrementGear();
         refreshValues();
     }
@@ -64,13 +67,24 @@ public class DetailActivity extends ActionBarActivity {
     }
 
     public void btnLevelIncrement(View v) {
-        sound.playSound(R.raw.levelUp1);
+        sound.playSound(R.raw.levelup1);
         player.incrementLevel();
         refreshValues();
     }
 
     public void btnLevelDecrement(View v) {
+        sound.playSound(R.raw.leveldown1);
         player.decrementLevel();
+        refreshValues();
+    }
+
+    public void btnBonusIncrement(View v) {
+        player.incrementBonus();
+        refreshValues();
+    }
+
+    public void btnBonusDecrement(View v) {
+        player.decrementBonus();
         refreshValues();
     }
 
@@ -78,6 +92,7 @@ public class DetailActivity extends ActionBarActivity {
         gear.setText(Integer.toString(player.getGear()));
         level.setText((Integer.toString(player.getLevel())));
         strength.setText(Integer.toString(player.getTotal()));
+        bonus.setText(Integer.toString(player.getBonus()));
 
         Data.adapter.notifyDataSetChanged();
         Data.adapter.saveData();

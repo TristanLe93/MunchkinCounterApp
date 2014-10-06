@@ -12,7 +12,7 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="20"
         android:id="@+id/totalNumberText"
-        android:textSize="@dimen/number_size"
+        android:textSize="@dimen/strength_number"
         android:layout_below="@+id/strengthText"
         android:layout_centerHorizontal="true" />
 
@@ -113,5 +113,43 @@
             android:src="@drawable/ic_arrow_down"
             android:onClick="btnGearDecrement" />
     </LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Bonuses"
+        android:id="@+id/textView"
+        android:layout_below="@+id/totalNumberText"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="15dp" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/imageView"
+        android:layout_below="@+id/textView"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/ic_arrow_up"
+        android:onClick="btnBonusIncrement" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="10"
+        android:id="@+id/bonusNumberText"
+        android:layout_below="@+id/imageView"
+        android:layout_centerHorizontal="true"
+        android:textSize="@dimen/player_name" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/imageView2"
+        android:layout_below="@+id/bonusNumberText"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/ic_arrow_down"
+        android:onClick="btnBonusDecrement" />
 
 </RelativeLayout>
