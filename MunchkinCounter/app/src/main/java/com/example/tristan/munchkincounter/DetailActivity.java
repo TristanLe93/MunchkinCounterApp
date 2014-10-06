@@ -1,5 +1,6 @@
 package com.example.tristan.munchkincounter;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
@@ -23,8 +24,13 @@ public class DetailActivity extends ActionBarActivity {
         setContentView(R.layout.activity_detail);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+        // load sound player
+        sound = new SoundPoolPlayer(this);
+
+        Bundle extras = getIntent().getExtras();
+
         // get the player
-        int pos = getIntent().getExtras().getInt("position");
+        int pos = extras.getInt("position");
         player = Data.adapter.getItem(pos);
         getSupportActionBar().setTitle(player.getName());
 
@@ -36,9 +42,6 @@ public class DetailActivity extends ActionBarActivity {
 
         // assign values to screen
         refreshValues();
-
-        // load sound player
-        sound = new SoundPoolPlayer(this);
     }
 
     @Override
@@ -53,6 +56,14 @@ public class DetailActivity extends ActionBarActivity {
         // Handle action bar item clicks
         int id = item.getItemId();
         return super.onOptionsItemSelected(item);
+    }
+
+    /**
+     * Transition to the calculator
+     */
+    public void btnCalculator(View v) {
+        Intent intent = new Intent(this, CalculatorActivity.class);
+        startActivity(intent);
     }
 
     public void btnGearIncrement(View v) {

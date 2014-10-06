@@ -4,9 +4,7 @@ import android.content.Context;
 import android.media.AudioManager;
 import android.media.SoundPool;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Random;
 
 /**
@@ -15,7 +13,6 @@ import java.util.Random;
 public class SoundPoolPlayer {
     private SoundPool player;
     private HashMap sounds = new HashMap();
-    //private HashMap gearup = new HashMap();
     private Random randNum = new Random();
     private int[] gearup = {R.raw.gearup1, R.raw.gearup2, R.raw.gearup3};
 

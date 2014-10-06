@@ -26,8 +26,12 @@
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".SummaryActivity"/>
-            </activity>
+        </activity>
+        <activity android:name=".CalculatorActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait"
+            android:label="Battle Calculator">
+        </activity>
 
     </application>
-
 </manifest>
