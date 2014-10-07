@@ -60,11 +60,16 @@ public class SummaryActivity extends ActionBarActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks
-        int id = item.getItemId();
-
-        if (id == R.id.action_new) {
+        switch (item.getItemId()) {
+            case R.id.add_player:
                 showInputDialog();
-            return true;
+                return true;
+            case R.id.reset_players:
+                Data.adapter.resetAllPlayers();
+                return true;
+            case R.id.delete_players:
+                Data.adapter.deleteAllPlayers();
+                return true;
         }
 
         return super.onOptionsItemSelected(item);

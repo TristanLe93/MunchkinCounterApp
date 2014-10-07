@@ -31,6 +31,10 @@ public class Player {
 
     public Player(String name) {
         this.name = name;
+        reset();
+    }
+
+    public void reset() {
         level = 1;
         gear = 0;
         bonus = 0;

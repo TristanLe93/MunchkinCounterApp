@@ -56,6 +56,24 @@ public class ListAdapter extends BaseAdapter {
         saveData();
     }
 
+    /**
+     * Resets all players to level 1 with zero gear bonus.
+     */
+    public void resetAllPlayers() {
+        for (Player p : listData) {
+            p.reset();
+        }
+
+        this.notifyDataSetChanged();
+        saveData();
+    }
+
+    public void deleteAllPlayers() {
+        while (listData.size() > 0) {
+            deletePlayer(0);
+        }
+    }
+
     // save player data to persistent store
     public void saveData() {
         SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(layoutInflater.getContext());

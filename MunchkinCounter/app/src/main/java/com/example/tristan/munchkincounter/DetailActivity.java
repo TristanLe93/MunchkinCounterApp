@@ -44,20 +44,6 @@ public class DetailActivity extends ActionBarActivity {
         refreshValues();
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.summary_actions, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks
-        int id = item.getItemId();
-        return super.onOptionsItemSelected(item);
-    }
-
     /**
      * Transition to the calculator
      */
