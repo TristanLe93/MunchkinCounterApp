@@ -63,6 +63,8 @@ public class DetailActivity extends ActionBarActivity {
      */
     public void btnCalculator(View v) {
         Intent intent = new Intent(this, CalculatorActivity.class);
+        intent.putExtra("strength", player.getTotal());
+        intent.putExtra("name", player.getName());
         startActivity(intent);
     }
 
