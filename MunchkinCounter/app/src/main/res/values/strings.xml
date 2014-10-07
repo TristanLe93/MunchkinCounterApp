@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Munchkin Counter</string>
-    <string name="action_settings">Settings</string>
-    <string name="action_new">Add Player</string>
-    <string name="summary">Munchkin Summary</string>
-    <string name="delete">Delete</string>
+    <string name="summary">Scoreboard</string>
+    <string name="add_player">Add Player</string>
+    <string name="delete">Delete Player</string>
+    <string name="roll_dice">Roll Dice (D6)</string>
+    <string name="reset_player">Reset Player</string>
 </resources>

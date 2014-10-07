@@ -1,4 +1,4 @@
-package com.example.tristan.munchkincounter;
+package com.example.tristan.munchkincounter.Activities;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -10,9 +10,19 @@ import android.view.ContextMenu;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ListView;
+
+import com.example.tristan.munchkincounter.Activities.DetailActivity;
+import com.example.tristan.munchkincounter.Data;
+import com.example.tristan.munchkincounter.ListAdapter;
+import com.example.tristan.munchkincounter.Player;
+import com.example.tristan.munchkincounter.R;
+
+import java.util.Random;
 
 
 public class SummaryActivity extends ActionBarActivity {
@@ -40,6 +50,9 @@ public class SummaryActivity extends ActionBarActivity {
 
         // load persistent data if available
         Data.adapter.readData();
+
+        // keep screen on
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
     }
 
 
@@ -64,6 +77,9 @@ public class SummaryActivity extends ActionBarActivity {
             case R.id.add_player:
                 showInputDialog();
                 return true;
+            case R.id.roll_dice:
+                showDiceRoll();
+                return true;
             case R.id.reset_players:
                 Data.adapter.resetAllPlayers();
                 return true;
@@ -82,23 +98,25 @@ public class SummaryActivity extends ActionBarActivity {
             case R.id.delete:
                 Data.adapter.deletePlayer(info.position);
                 return true;
+            case R.id.reset_player:
+                Data.adapter.resetPlayer(info.position);
             default:
                 return super.onContextItemSelected(item);
         }
     }
     // Shows dialog to input new player name
     private void showInputDialog() {
-        AlertDialog.Builder alert = new AlertDialog.Builder(this);
-        alert.setTitle("Add new player");
-        alert.setMessage("Enter name?");
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Add new player");
+
 
         // Create EditText for entry
         final EditText input = new EditText(this);
         input.setInputType(InputType.TYPE_TEXT_FLAG_CAP_WORDS);
-        alert.setView(input);
+        builder.setView(input);
 
         // Make an "Add" button to create a new player
-        alert.setPositiveButton("Add", new DialogInterface.OnClickListener() {
+        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int whichButton) {
                 String name = input.getText().toString();
                 if (name.length() > 0) {
@@ -109,18 +127,48 @@ public class SummaryActivity extends ActionBarActivity {
             }
         });
 
-        // Make a "Cancel" button. Simply dismiss the alert
-        alert.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int whichButton) {}
+        // show dialog with keyboard input
+        AlertDialog dialog = builder.create();
+        dialog.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE);
+        dialog.show();
+    }
+
+    private void showDiceRoll() {
+        // roll the dice and grab its related image
+        Random random = new Random();
+        int randNum = random.nextInt(6) + 1;
+        String imgName = "dice" + randNum;
+        int imgId = getResources().getIdentifier(imgName, "drawable", getPackageName());
+
+        // set the dice image
+        ImageView image = new ImageView(this);
+        image.setImageResource(imgId);
+
+        // build the AlertDialog
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage("You rolled a...");
+        builder.setView(image);
+
+        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                // dismiss dialog
+            }
         });
 
-        alert.show();
+        // create and show
+        AlertDialog dialog = builder.create();
+        dialog.show();
     }
 
     // add a new player to the listview
     private void addNewPlayer(String name) {
         Player p = new Player(name);
         Data.adapter.addNewPlayer(p);
+    }
+
+    private void resetPlayer() {
+
     }
 
     private void startDetailActivity(int position) {

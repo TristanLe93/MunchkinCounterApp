@@ -22,7 +22,7 @@ public class ListAdapter extends BaseAdapter {
 
     private ArrayList<Player> listData;
     private LayoutInflater layoutInflater;
-    private String key = "playerData";
+    private final String key = "playerData";
 
     public ListAdapter(Context context) {
         listData = new ArrayList<Player>();
@@ -56,16 +56,20 @@ public class ListAdapter extends BaseAdapter {
         saveData();
     }
 
+    public void resetPlayer(int position) {
+        Player p = listData.get(position);
+        p.reset();
+        this.notifyDataSetChanged();
+        saveData();
+    }
+
     /**
      * Resets all players to level 1 with zero gear bonus.
      */
     public void resetAllPlayers() {
-        for (Player p : listData) {
-            p.reset();
+        for (int i = 1; i < listData.size(); i++) {
+            resetPlayer(i);
         }
-
-        this.notifyDataSetChanged();
-        saveData();
     }
 
     public void deleteAllPlayers() {

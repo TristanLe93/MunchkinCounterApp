@@ -1,12 +1,16 @@
-package com.example.tristan.munchkincounter;
+package com.example.tristan.munchkincounter.Activities;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
+
+import com.example.tristan.munchkincounter.Activities.CalculatorActivity;
+import com.example.tristan.munchkincounter.Data;
+import com.example.tristan.munchkincounter.Player;
+import com.example.tristan.munchkincounter.R;
+import com.example.tristan.munchkincounter.SoundPoolPlayer;
 
 
 public class DetailActivity extends ActionBarActivity {

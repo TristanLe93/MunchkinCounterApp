@@ -1,10 +1,12 @@
-package com.example.tristan.munchkincounter;
+package com.example.tristan.munchkincounter.Activities;
 
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
+
+import com.example.tristan.munchkincounter.R;
 
 /**
  * Created by Tristan on 7/10/2014.
