@@ -61,6 +61,7 @@ public class DetailActivity extends ActionBarActivity {
             case android.R.id.home:
                 saveData();
                 NavUtils.navigateUpFromSameTask(this);
+                overridePendingTransition(R.anim.push_right_out, R.anim.push_left_in);
                 return true;
         }
 
@@ -71,6 +72,7 @@ public class DetailActivity extends ActionBarActivity {
     public void onBackPressed() {
         saveData();
         finish();
+        overridePendingTransition(R.anim.push_right_out, R.anim.push_left_in);
     }
 
     /**

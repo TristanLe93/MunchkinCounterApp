@@ -171,14 +171,11 @@ public class SummaryActivity extends ActionBarActivity {
         Data.adapter.addNewPlayer(p);
     }
 
-    private void resetPlayer() {
-
-    }
-
     private void startDetailActivity(int position) {
         Intent intent = new Intent(this, DetailActivity.class);
         intent.putExtra("position", position);
 
         startActivity(intent);
+        overridePendingTransition(R.anim.push_right_in, R.anim.push_left_out);
     }
 }
