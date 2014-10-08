@@ -15,6 +15,8 @@ import com.google.gson.reflect.TypeToken;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 /**
  * ListAdapter class is used to manage a custom cell in a listview.
@@ -103,6 +105,15 @@ public class ListAdapter extends BaseAdapter {
             listData = list;
             this.notifyDataSetChanged();
         }
+    }
+
+    public void sortByLevel() {
+        Collections.sort(listData, new Comparator<Player>() {
+            @Override
+            public int compare(Player player1, Player player2) {
+                return player2.getLevel() - player1.getLevel();
+            }
+        });
     }
 
     /**

@@ -21,6 +21,7 @@ import com.example.tristan.munchkincounter.Data;
 import com.example.tristan.munchkincounter.ListAdapter;
 import com.example.tristan.munchkincounter.Player;
 import com.example.tristan.munchkincounter.R;
+import com.example.tristan.munchkincounter.SoundPlayer;
 
 import java.util.Random;
 
@@ -50,6 +51,10 @@ public class SummaryActivity extends ActionBarActivity {
 
         // load persistent data if available
         Data.adapter.readData();
+
+        // load soundPlayer
+        SoundPlayer.getInstance();
+        SoundPlayer.initSounds(this);
 
         // keep screen on
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
@@ -107,8 +112,7 @@ public class SummaryActivity extends ActionBarActivity {
     // Shows dialog to input new player name
     private void showInputDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("Add new player");
-
+        builder.setMessage("Add new player");
 
         // Create EditText for entry
         final EditText input = new EditText(this);

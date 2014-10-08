@@ -3,15 +3,18 @@ package com.example.tristan.munchkincounter.Activities;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.support.v4.app.NavUtils;
 import android.support.v7.app.ActionBarActivity;
+import android.view.MenuItem;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.TextView;
 
-import com.example.tristan.munchkincounter.Activities.CalculatorActivity;
 import com.example.tristan.munchkincounter.Data;
 import com.example.tristan.munchkincounter.FontCache;
 import com.example.tristan.munchkincounter.Player;
 import com.example.tristan.munchkincounter.R;
+import com.example.tristan.munchkincounter.SoundPlayer;
 import com.example.tristan.munchkincounter.SoundPoolPlayer;
 
 
@@ -22,16 +25,12 @@ public class DetailActivity extends ActionBarActivity {
     private TextView bonus;
 
     private Player player;
-    private SoundPoolPlayer sound;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
-        // load sound player
-        sound = new SoundPoolPlayer(this);
 
         Bundle extras = getIntent().getExtras();
 
@@ -51,6 +50,27 @@ public class DetailActivity extends ActionBarActivity {
 
         // assign values to screen
         refreshValues();
+
+        // keep screen on
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                saveData();
+                NavUtils.navigateUpFromSameTask(this);
+                return true;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onBackPressed() {
+        saveData();
+        finish();
     }
 
     /**
@@ -64,34 +84,37 @@ public class DetailActivity extends ActionBarActivity {
     }
 
     public void btnGearIncrement(View v) {
-        sound.playGearUpSound();
+        SoundPlayer.playSound(R.raw.gearup1);
         player.incrementGear();
         refreshValues();
     }
 
     public void btnGearDecrement(View v) {
+        SoundPlayer.playSound(R.raw.geardown1);
         player.decrementGear();
         refreshValues();
     }
 
     public void btnLevelIncrement(View v) {
-        sound.playSound(R.raw.levelup1);
+        SoundPlayer.playSound(R.raw.levelup1);
         player.incrementLevel();
         refreshValues();
     }
 
     public void btnLevelDecrement(View v) {
-        sound.playSound(R.raw.leveldown1);
+        SoundPlayer.playSound(R.raw.leveldown1);
         player.decrementLevel();
         refreshValues();
     }
 
     public void btnBonusIncrement(View v) {
+        SoundPlayer.playSound(R.raw.tick);
         player.incrementBonus();
         refreshValues();
     }
 
     public void btnBonusDecrement(View v) {
+        SoundPlayer.playSound(R.raw.tick);
         player.decrementBonus();
         refreshValues();
     }
@@ -101,8 +124,11 @@ public class DetailActivity extends ActionBarActivity {
         level.setText((Integer.toString(player.getLevel())));
         strength.setText(Integer.toString(player.getTotal()));
         bonus.setText(Integer.toString(player.getBonus()));
+    }
 
+    private void saveData() {
         Data.adapter.notifyDataSetChanged();
         Data.adapter.saveData();
+        Data.adapter.sortByLevel();
     }
 }
