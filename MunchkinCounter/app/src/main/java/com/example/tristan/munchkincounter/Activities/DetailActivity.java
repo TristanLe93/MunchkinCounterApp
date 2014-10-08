@@ -1,6 +1,7 @@
 package com.example.tristan.munchkincounter.Activities;
 
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.View;
@@ -8,6 +9,7 @@ import android.widget.TextView;
 
 import com.example.tristan.munchkincounter.Activities.CalculatorActivity;
 import com.example.tristan.munchkincounter.Data;
+import com.example.tristan.munchkincounter.FontCache;
 import com.example.tristan.munchkincounter.Player;
 import com.example.tristan.munchkincounter.R;
 import com.example.tristan.munchkincounter.SoundPoolPlayer;
@@ -43,6 +45,9 @@ public class DetailActivity extends ActionBarActivity {
         level = (TextView)findViewById(R.id.levelNumberText);
         gear = (TextView)findViewById(R.id.gearNumberText);
         bonus = (TextView)findViewById(R.id.bonusNumberText);
+
+        Typeface tf = FontCache.get("fonts/quasimodo.ttf", this.getBaseContext());
+        strength.setTypeface(tf);
 
         // assign values to screen
         refreshValues();

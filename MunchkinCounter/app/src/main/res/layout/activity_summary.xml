@@ -2,12 +2,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/background_color"
     tools:context=".PlayerSummary">
 
     <ListView
         android:id="@+id/playerList"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:dividerHeight="1dp" />
+        android:dividerHeight="1sp"
+        android:divider="#000000" />
 
 </LinearLayout>
