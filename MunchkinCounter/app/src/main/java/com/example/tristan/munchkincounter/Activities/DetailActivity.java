@@ -15,7 +15,6 @@ import com.example.tristan.munchkincounter.FontCache;
 import com.example.tristan.munchkincounter.Player;
 import com.example.tristan.munchkincounter.R;
 import com.example.tristan.munchkincounter.SoundPlayer;
-import com.example.tristan.munchkincounter.SoundPoolPlayer;
 
 
 public class DetailActivity extends ActionBarActivity {
@@ -31,10 +30,11 @@ public class DetailActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 
         Bundle extras = getIntent().getExtras();
 
-        // get the player
+        // get the player from list
         int pos = extras.getInt("position");
         player = Data.adapter.getItem(pos);
         getSupportActionBar().setTitle(player.getName());
@@ -45,14 +45,12 @@ public class DetailActivity extends ActionBarActivity {
         gear = (TextView)findViewById(R.id.gearNumberText);
         bonus = (TextView)findViewById(R.id.bonusNumberText);
 
+        // set strength font
         Typeface tf = FontCache.get("fonts/quasimodo.ttf", this.getBaseContext());
         strength.setTypeface(tf);
 
         // assign values to screen
         refreshValues();
-
-        // keep screen on
-        getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
     }
 
     @Override
@@ -80,9 +78,10 @@ public class DetailActivity extends ActionBarActivity {
      */
     public void btnCalculator(View v) {
         Intent intent = new Intent(this, CalculatorActivity.class);
-        intent.putExtra("strength", player.getTotal());
-        intent.putExtra("name", player.getName());
+        int pos = Data.adapter.getItemPos(player);
+        intent.putExtra("position", pos);
         startActivity(intent);
+        overridePendingTransition(R.anim.push_right_in, R.anim.push_left_out);
     }
 
     public void btnGearIncrement(View v) {

@@ -11,11 +11,11 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Total"
         android:id="@+id/totalText"
-        android:layout_marginRight="10dp"
-        android:layout_above="@+id/levelNumberText"
+        android:layout_marginRight="20dp"
+        android:textColor="@color/text_color"
+        android:layout_alignParentTop="true"
         android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:textColor="@color/text_color"/>
+        android:layout_alignParentEnd="true" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -24,10 +24,10 @@
         android:text="Level"
         android:id="@+id/levelText"
         android:layout_toStartOf="@+id/totalText"
-        android:layout_marginRight="15sp"
+        android:textColor="@color/text_color"
         android:layout_alignParentTop="true"
         android:layout_toLeftOf="@+id/totalText"
-        android:textColor="@color/text_color"/>
+        android:layout_marginRight="20dp" />
 
     <TextView
         android:layout_width="wrap_content"

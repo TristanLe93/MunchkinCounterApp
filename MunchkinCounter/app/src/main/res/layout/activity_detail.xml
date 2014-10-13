@@ -162,7 +162,7 @@
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/imageView"
+            android:id="@+id/btn_player_gear_up"
             android:src="@drawable/ic_arrow_up"
             android:onClick="btnBonusIncrement"
             android:layout_gravity="center_horizontal" />
@@ -182,7 +182,7 @@
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/imageView2"
+            android:id="@+id/btn_player_gear_down"
             android:src="@drawable/ic_arrow_down"
             android:onClick="btnBonusDecrement"
             android:layout_gravity="center_horizontal" />

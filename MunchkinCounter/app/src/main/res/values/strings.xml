@@ -9,4 +9,5 @@
 
     <color name="background_color">#ffc654</color>
     <color name="text_color">#270b00</color>
+    <color name="monster_color">#c0b8a1</color>
 </resources>

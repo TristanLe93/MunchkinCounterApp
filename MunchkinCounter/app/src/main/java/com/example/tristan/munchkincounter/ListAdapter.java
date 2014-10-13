@@ -47,6 +47,8 @@ public class ListAdapter extends BaseAdapter {
         return position;
     }
 
+    public int getItemPos(Player player) { return listData.indexOf(player); }
+
     public void addNewPlayer(Player p) {
         listData.add(p);
         this.notifyDataSetChanged();
