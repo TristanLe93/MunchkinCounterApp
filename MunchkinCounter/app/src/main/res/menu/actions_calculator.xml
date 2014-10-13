@@ -1,7 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:munchkinCounter="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".CalculatorActivity" >
+    tools:context=".PlayerSummary">
 
     <item
         android:id="@+id/roll_dice"
@@ -9,14 +11,8 @@
         android:title="@string/roll_dice"
         munchkinCounter:showAsAction="ifRoom" />
     <item
-        android:id="@+id/add_player"
-        android:icon="@drawable/ic_action_user_add"
-        android:title="@string/add_player"
+        android:id="@+id/show_scoreboard"
+        android:icon="@drawable/ic_menu_chart"
+        android:title="@string/show_scoreboard"
         munchkinCounter:showAsAction="ifRoom" />
-    <item
-        android:id="@+id/reset_players"
-        android:title="Reset Players" />
-    <item
-        android:id="@+id/delete_players"
-        android:title="Delete Players" />
 </menu>

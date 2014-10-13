@@ -1,14 +1,18 @@
 package com.example.tristan.munchkincounter.Activities;
 
+import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v4.app.NavUtils;
 import android.support.v7.app.ActionBarActivity;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.ArrayAdapter;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import com.example.tristan.munchkincounter.Data;
@@ -16,6 +20,8 @@ import com.example.tristan.munchkincounter.FontCache;
 import com.example.tristan.munchkincounter.Player;
 import com.example.tristan.munchkincounter.R;
 import com.example.tristan.munchkincounter.SoundPlayer;
+
+import java.util.Random;
 
 /**
  * Created by Tristan on 7/10/2014.
@@ -41,6 +47,13 @@ public class CalculatorActivity extends ActionBarActivity {
         updateUI();
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.actions_calculator, menu);
+        return true;
+    }
+
     /**
      * Handles the items selection on the action bar.
      */
@@ -52,11 +65,21 @@ public class CalculatorActivity extends ActionBarActivity {
                 finish();
                 overridePendingTransition(R.anim.push_right_out, R.anim.push_left_in);
                 return true;
+            case R.id.roll_dice:
+                showDiceRoll();
+                return true;
+            case R.id.show_scoreboard:
+                showScoreboard();
+                return true;
         }
 
         return super.onOptionsItemSelected(item);
     }
 
+    /**
+     * When "up" key is pressed, save the data
+     * and return to details activity.
+     */
     @Override
     public void onBackPressed() {
         Data.adapter.saveData();
@@ -134,6 +157,62 @@ public class CalculatorActivity extends ActionBarActivity {
         TextView textview = (TextView)findViewById(resId);
         String text = Integer.toString(num);
         textview.setText(text);
+    }
+
+    /**
+     * Show a random D6 dice roll.
+     */
+    private void showDiceRoll() {
+        // roll the dice and grab its related image
+        Random random = new Random();
+        int randNum = random.nextInt(6) + 1;
+        String imgName = "dice" + randNum;
+        int imgId = getResources().getIdentifier(imgName, "drawable", getPackageName());
+
+        // set the dice image
+        ImageView image = new ImageView(this);
+        image.setImageResource(imgId);
+
+        // build the AlertDialog
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage("You rolled a...");
+        builder.setView(image);
+
+        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                // dismiss dialog
+            }
+        });
+
+        // create and show
+        AlertDialog dialog = builder.create();
+        dialog.show();
+    }
+
+    /**
+     * Shows the current status of the scoreboard.
+     */
+    private void showScoreboard() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Scoreboard");
+
+        ListView lv = new ListView(this);
+        lv.setAdapter(Data.adapter);
+        builder.setView(lv);
+
+        // set dismiss button
+        builder.setPositiveButton("OK",
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int i) {
+                        dialog.dismiss();
+                    }
+                });
+
+        // create and show
+        AlertDialog dialog = builder.create();
+        dialog.show();
     }
 
     /**
