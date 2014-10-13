@@ -106,8 +106,12 @@ public class CalculatorActivity extends ActionBarActivity {
         Typeface tf = FontCache.get("fonts/quasimodo.ttf", this.getBaseContext());
         TextView pStr = (TextView)findViewById(R.id.txt_player_strength);
         TextView mStr = (TextView)findViewById(R.id.txt_monster_strength);
+        TextView pName = (TextView)findViewById(R.id.txt_player_name);
+        TextView mName = (TextView)findViewById(R.id.txt_monster_name);
         pStr.setTypeface(tf);
         mStr.setTypeface(tf);
+        pName.setTypeface(tf);
+        mName.setTypeface(tf);
     }
 
     /**

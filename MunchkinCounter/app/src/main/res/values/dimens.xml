@@ -6,4 +6,6 @@
     <dimen name="player_name">24sp</dimen>
     <dimen name="strength_number">96sp</dimen>
     <dimen name="detail_number">64sp</dimen>
+    <dimen name="total_number">48sp</dimen>
+    <dimen name="object_name">32sp</dimen>
 </resources>
