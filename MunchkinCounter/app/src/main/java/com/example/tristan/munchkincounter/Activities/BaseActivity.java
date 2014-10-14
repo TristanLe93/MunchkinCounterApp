@@ -89,7 +89,7 @@ public class BaseActivity extends ActionBarActivity {
     protected void transitionBack() {
         Data.adapter.saveData();
         Data.adapter.notifyDataSetChanged();
-        Data.adapter.sortByLevel();
+        Data.adapter.sortList();
         finish();
         overridePendingTransition(R.anim.push_right_out, R.anim.push_left_in);
     }

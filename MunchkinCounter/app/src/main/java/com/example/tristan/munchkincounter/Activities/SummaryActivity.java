@@ -3,6 +3,7 @@ package com.example.tristan.munchkincounter.Activities;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.text.InputType;
@@ -15,6 +16,7 @@ import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 
 import com.example.tristan.munchkincounter.Data;
 import com.example.tristan.munchkincounter.ListAdapter;
@@ -31,7 +33,6 @@ public class SummaryActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_summary);
-
 
         // set the array adapter to listview
         Data.adapter = new ListAdapter(this);
@@ -51,6 +52,9 @@ public class SummaryActivity extends BaseActivity {
 
         // load persistent data if available
         Data.adapter.readData();
+
+        findViewById(R.id.btn_level).setOnClickListener(onClickListener);
+        findViewById(R.id.btn_total).setOnClickListener(onClickListener);
 
         // load soundPlayer
         SoundPlayer.getInstance();
@@ -155,4 +159,28 @@ public class SummaryActivity extends BaseActivity {
         startActivity(intent);
         overridePendingTransition(R.anim.push_right_in, R.anim.push_left_out);
     }
+
+    private View.OnClickListener onClickListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            int selected = getResources().getColor(R.color.background_color);
+            int notSelected = getResources().getColor(R.color.monster_color);
+
+            switch (view.getId()) {
+                case R.id.btn_level:
+                    findViewById(R.id.btn_level).setBackgroundColor(selected);
+                    findViewById(R.id.btn_total).setBackgroundColor(notSelected);
+                    Data.sortByLevel = true;
+                    break;
+                case R.id.btn_total:
+                    findViewById(R.id.btn_level).setBackgroundColor(notSelected);
+                    findViewById(R.id.btn_total).setBackgroundColor(selected);
+                    Data.sortByLevel = false;
+                    break;
+            }
+
+            Data.adapter.sortList();
+            Data.adapter.notifyDataSetChanged();
+        }
+    };
 }

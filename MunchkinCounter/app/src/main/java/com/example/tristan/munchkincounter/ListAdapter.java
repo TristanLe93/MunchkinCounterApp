@@ -72,7 +72,7 @@ public class ListAdapter extends BaseAdapter {
      * Resets all players to level 1 with zero gear bonus.
      */
     public void resetAllPlayers() {
-        for (int i = 1; i < listData.size(); i++) {
+        for (int i = 0; i < listData.size(); i++) {
             resetPlayer(i);
         }
     }
@@ -109,11 +109,28 @@ public class ListAdapter extends BaseAdapter {
         }
     }
 
-    public void sortByLevel() {
+    public void sortList() {
+        if (Data.sortByLevel) {
+            sortByLevel();
+        } else {
+            sortByTotal();
+        }
+    }
+
+    private void sortByLevel() {
         Collections.sort(listData, new Comparator<Player>() {
             @Override
             public int compare(Player player1, Player player2) {
                 return player2.getLevel() - player1.getLevel();
+            }
+        });
+    }
+
+    private void sortByTotal() {
+        Collections.sort(listData, new Comparator<Player>() {
+            @Override
+            public int compare(Player player1, Player player2) {
+                return player2.getTotal() - player1.getTotal();
             }
         });
     }
@@ -155,6 +172,8 @@ public class ListAdapter extends BaseAdapter {
 
         return convertView;
     }
+
+
 
     // store textviews in static class for easier access
     static class ViewHolder {

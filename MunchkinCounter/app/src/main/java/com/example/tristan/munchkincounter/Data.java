@@ -5,4 +5,5 @@ package com.example.tristan.munchkincounter;
  */
 public class Data {
     public static ListAdapter adapter;
+    public static boolean sortByLevel = true;
 }

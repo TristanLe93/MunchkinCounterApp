@@ -11,7 +11,7 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Total"
         android:id="@+id/totalText"
-        android:layout_marginRight="20dp"
+        android:layout_marginRight="5dp"
         android:textColor="@color/text_color"
         android:layout_alignParentTop="true"
         android:layout_alignParentRight="true"
@@ -27,7 +27,7 @@
         android:textColor="@color/text_color"
         android:layout_alignParentTop="true"
         android:layout_toLeftOf="@+id/totalText"
-        android:layout_marginRight="20dp" />
+        android:layout_marginRight="30dp" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -35,7 +35,7 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Player Name"
         android:id="@+id/playerNameText"
-        android:textSize="@dimen/player_name"
+        android:textSize="@dimen/object_name"
         android:layout_marginLeft="10sp"
         android:layout_centerVertical="true"
         android:layout_alignParentLeft="true"
@@ -51,7 +51,7 @@
         android:layout_below="@+id/totalText"
         android:layout_alignLeft="@+id/totalText"
         android:layout_alignStart="@+id/totalText"
-        android:textSize="@dimen/number_size"
+        android:textSize="@dimen/total_number"
         android:textColor="@color/text_color"/>
 
     <TextView
@@ -60,7 +60,7 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="20"
         android:id="@+id/levelNumberText"
-        android:textSize="@dimen/number_size"
+        android:textSize="@dimen/total_number"
         android:layout_below="@+id/levelText"
         android:layout_alignLeft="@+id/levelText"
         android:layout_alignStart="@+id/levelText"
