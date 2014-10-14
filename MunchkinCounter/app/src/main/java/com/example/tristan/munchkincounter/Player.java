@@ -40,6 +40,10 @@ public class Player {
         bonus = 0;
     }
 
+    public void setGearZero() {
+        gear = 0;
+    }
+
     public void incrementLevel() {
         level += 1;
     }

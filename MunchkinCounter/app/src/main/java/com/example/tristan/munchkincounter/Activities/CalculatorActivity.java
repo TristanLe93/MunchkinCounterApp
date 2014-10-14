@@ -26,7 +26,7 @@ import java.util.Random;
 /**
  * Created by Tristan on 7/10/2014.
  */
-public class CalculatorActivity extends ActionBarActivity {
+public class CalculatorActivity extends BaseActivity {
     private Player player;
     private int playerModifier;
     private int monsterLevel;
@@ -40,7 +40,6 @@ public class CalculatorActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_calculator);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 
         setup();
         setButtonListeners();
@@ -60,31 +59,12 @@ public class CalculatorActivity extends ActionBarActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            case android.R.id.home:
-                Data.adapter.saveData();
-                finish();
-                overridePendingTransition(R.anim.push_right_out, R.anim.push_left_in);
-                return true;
-            case R.id.roll_dice:
-                showDiceRoll();
-                return true;
             case R.id.show_scoreboard:
                 showScoreboard();
                 return true;
         }
 
         return super.onOptionsItemSelected(item);
-    }
-
-    /**
-     * When "up" key is pressed, save the data
-     * and return to details activity.
-     */
-    @Override
-    public void onBackPressed() {
-        Data.adapter.saveData();
-        finish();
-        overridePendingTransition(R.anim.push_right_out, R.anim.push_left_in);
     }
 
     /**
@@ -161,37 +141,6 @@ public class CalculatorActivity extends ActionBarActivity {
         TextView textview = (TextView)findViewById(resId);
         String text = Integer.toString(num);
         textview.setText(text);
-    }
-
-    /**
-     * Show a random D6 dice roll.
-     */
-    private void showDiceRoll() {
-        // roll the dice and grab its related image
-        Random random = new Random();
-        int randNum = random.nextInt(6) + 1;
-        String imgName = "dice" + randNum;
-        int imgId = getResources().getIdentifier(imgName, "drawable", getPackageName());
-
-        // set the dice image
-        ImageView image = new ImageView(this);
-        image.setImageResource(imgId);
-
-        // build the AlertDialog
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setMessage("You rolled a...");
-        builder.setView(image);
-
-        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-                // dismiss dialog
-            }
-        });
-
-        // create and show
-        AlertDialog dialog = builder.create();
-        dialog.show();
     }
 
     /**

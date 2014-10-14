@@ -16,7 +16,6 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
 
-import com.example.tristan.munchkincounter.Activities.DetailActivity;
 import com.example.tristan.munchkincounter.Data;
 import com.example.tristan.munchkincounter.ListAdapter;
 import com.example.tristan.munchkincounter.Player;
@@ -26,12 +25,13 @@ import com.example.tristan.munchkincounter.SoundPlayer;
 import java.util.Random;
 
 
-public class SummaryActivity extends ActionBarActivity {
+public class SummaryActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_summary);
+
 
         // set the array adapter to listview
         Data.adapter = new ListAdapter(this);
@@ -55,16 +55,13 @@ public class SummaryActivity extends ActionBarActivity {
         // load soundPlayer
         SoundPlayer.getInstance();
         SoundPlayer.initSounds(this);
-
-        // keep screen on
-        getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
     }
 
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.summary_actions, menu);
+        getMenuInflater().inflate(R.menu.actions_summary, menu);
         return true;
     }
 
@@ -81,9 +78,6 @@ public class SummaryActivity extends ActionBarActivity {
         switch (item.getItemId()) {
             case R.id.add_player:
                 showInputDialog();
-                return true;
-            case R.id.roll_dice:
-                showDiceRoll();
                 return true;
             case R.id.reset_players:
                 Data.adapter.resetAllPlayers();
@@ -109,6 +103,17 @@ public class SummaryActivity extends ActionBarActivity {
                 return super.onContextItemSelected(item);
         }
     }
+
+    /**
+     * Clean up memory and close app.
+     */
+    @Override
+    public void onBackPressed() {
+        SoundPlayer.cleanUp();
+        Data.adapter.saveData();
+        finish();
+    }
+
     // Shows dialog to input new player name
     private void showInputDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -134,34 +139,6 @@ public class SummaryActivity extends ActionBarActivity {
         // show dialog with keyboard input
         AlertDialog dialog = builder.create();
         dialog.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE);
-        dialog.show();
-    }
-
-    private void showDiceRoll() {
-        // roll the dice and grab its related image
-        Random random = new Random();
-        int randNum = random.nextInt(6) + 1;
-        String imgName = "dice" + randNum;
-        int imgId = getResources().getIdentifier(imgName, "drawable", getPackageName());
-
-        // set the dice image
-        ImageView image = new ImageView(this);
-        image.setImageResource(imgId);
-
-        // build the AlertDialog
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setMessage("You rolled a...");
-        builder.setView(image);
-
-        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-                // dismiss dialog
-            }
-        });
-
-        // create and show
-        AlertDialog dialog = builder.create();
         dialog.show();
     }
 

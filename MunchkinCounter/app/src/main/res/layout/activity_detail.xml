@@ -1,191 +1,188 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent" android:layout_height="match_parent"
-    android:id="@+id/activity_detail"
-    android:background="@color/background_color" >
+<LinearLayout
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background_color"
+    xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <TextView
-        android:layout_width="wrap_content"
+    <RelativeLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="20"
-        android:id="@+id/totalNumberText"
-        android:textSize="@dimen/strength_number"
-        android:layout_below="@+id/strengthText"
-        android:layout_centerHorizontal="true"
-        android:textColor="@color/text_color"
-        android:typeface="serif" />
+        android:layout_gravity="center">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Strength"
-        android:id="@+id/strengthText"
-        android:layout_marginTop="10sp"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:typeface="serif"
-        android:textColor="@color/text_color"
-        android:textSize="@dimen/number_size" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="Strength"
+            android:id="@+id/textView"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:typeface="serif"
+            android:textSize="@dimen/number_size" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Gear"
-        android:id="@+id/textView5"
-        android:layout_gravity="center_horizontal"
-        android:typeface="serif"
-        android:textColor="@color/text_color"
-        android:textSize="@dimen/player_name"
-        android:layout_below="@+id/totalNumberText"
-        android:layout_centerHorizontal="true" />
-
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/gearIncrementArrow"
-        android:layout_gravity="center_horizontal"
-        android:src="@drawable/ic_arrow_up"
-        android:onClick="btnGearIncrement"
-        android:layout_below="@+id/textView5"
-        android:layout_centerHorizontal="true" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="20"
-        android:id="@+id/gearNumberText"
-        android:layout_gravity="center_horizontal"
-        android:textSize="@dimen/detail_number"
-        android:textColor="@color/text_color"
-        android:typeface="serif"
-        android:layout_below="@+id/gearIncrementArrow"
-        android:layout_centerHorizontal="true" />
-
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/gearDecrementArrow"
-        android:layout_gravity="center_horizontal"
-        android:src="@drawable/ic_arrow_down"
-        android:onClick="btnGearDecrement"
-        android:layout_below="@+id/gearNumberText"
-        android:layout_centerHorizontal="true" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="20"
+            android:id="@+id/txt_strength"
+            android:layout_below="@+id/textView"
+            android:layout_centerHorizontal="true"
+            android:typeface="serif"
+            android:textSize="@dimen/strength_number" />
+    </RelativeLayout>
 
     <LinearLayout
-        android:orientation="vertical"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:layout_toStartOf="@+id/textView5"
-        android:layout_alignParentBottom="true"
-        android:layout_below="@+id/totalNumberText"
-        android:id="@+id/linearLayout"
-        android:layout_toLeftOf="@+id/textView5">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="Level"
-            android:id="@+id/textView2"
-            android:layout_gravity="center_horizontal"
-            android:typeface="serif"
-            android:textColor="@color/text_color"
-            android:textSize="@dimen/player_name" />
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/levelIncrementArrow"
-            android:layout_gravity="center_horizontal"
-            android:src="@drawable/ic_arrow_up"
-            android:clickable="false"
-            android:onClick="btnLevelIncrement" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="10"
-            android:id="@+id/levelNumberText"
-            android:layout_gravity="center_horizontal"
-            android:textSize="@dimen/detail_number"
-            android:textColor="@color/text_color"
-            android:typeface="serif" />
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/levelDecrementArrow"
-            android:layout_gravity="center_horizontal"
-            android:src="@drawable/ic_arrow_down"
-            android:onClick="btnLevelDecrement" />
-
-    </LinearLayout>
-
-    <Button
-        android:layout_width="wrap_content"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Combat"
-        android:id="@+id/btn_fight"
-        android:onClick="btnCalculator"
-        android:layout_alignParentBottom="true"
-        android:layout_alignLeft="@+id/strengthText"
-        android:layout_alignStart="@+id/strengthText"
-        android:layout_alignRight="@+id/strengthText"
-        android:layout_alignEnd="@+id/strengthText"
-        android:layout_marginBottom="10sp"/>
+        android:layout_gravity="center_horizontal"
+        android:layout_weight="2">
 
-    <LinearLayout
-        android:orientation="vertical"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:layout_toEndOf="@+id/textView5"
-        android:layout_below="@+id/totalNumberText"
-        android:layout_toRightOf="@+id/textView5">
-
-        <TextView
+        <LinearLayout
+            android:orientation="vertical"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="Modifier"
-            android:id="@+id/player_name_text"
-            android:typeface="serif"
-            android:textColor="@color/text_color"
-            android:textSize="@dimen/player_name"
-            android:layout_gravity="center_horizontal"/>
+            android:layout_weight="1"
+            android:layout_gravity="center">
 
-        <ImageView
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="Level"
+                android:id="@+id/textview"
+                android:layout_gravity="center_horizontal"
+                android:typeface="serif"
+                android:textSize="@dimen/player_name" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/btn_level_up"
+                android:layout_gravity="center_horizontal"
+                android:src="@drawable/ic_arrow_up" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="10"
+                android:id="@+id/txt_level"
+                android:layout_gravity="center_horizontal"
+                android:typeface="serif"
+                android:textSize="@dimen/detail_number" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/btn_level_down"
+                android:layout_gravity="center_horizontal"
+                android:src="@drawable/ic_arrow_down" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="vertical"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/btn_player_gear_up"
-            android:src="@drawable/ic_arrow_up"
-            android:onClick="btnBonusIncrement"
-            android:layout_gravity="center_horizontal" />
+            android:layout_weight="1"
+            android:layout_gravity="center">
 
-        <TextView
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="Gear"
+                android:id="@+id/textView2"
+                android:layout_gravity="center_horizontal"
+                android:typeface="serif"
+                android:textSize="@dimen/player_name" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/btn_gear_up"
+                android:layout_gravity="center_horizontal"
+                android:src="@drawable/ic_arrow_up" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="10"
+                android:id="@+id/txt_gear"
+                android:layout_gravity="center_horizontal"
+                android:typeface="serif"
+                android:textSize="@dimen/detail_number" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/btn_gear_down"
+                android:layout_gravity="center_horizontal"
+                android:src="@drawable/ic_arrow_down" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="vertical"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="10"
-            android:id="@+id/bonusNumberText"
-            android:textSize="@dimen/detail_number"
-            android:textColor="@color/text_color"
-            android:typeface="serif"
-            android:layout_below="@+id/btn_fight"
-            android:layout_gravity="center_horizontal" />
+            android:layout_weight="1"
+            android:layout_gravity="center">
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/btn_player_gear_down"
-            android:src="@drawable/ic_arrow_down"
-            android:onClick="btnBonusDecrement"
-            android:layout_gravity="center_horizontal" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="Modifier"
+                android:id="@+id/textView3"
+                android:layout_gravity="center_horizontal"
+                android:typeface="serif"
+                android:textSize="@dimen/player_name" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/btn_mod_up"
+                android:layout_gravity="center_horizontal"
+                android:src="@drawable/ic_arrow_up" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="0"
+                android:id="@+id/txt_modifier"
+                android:layout_gravity="center_horizontal"
+                android:typeface="serif"
+                android:textSize="@dimen/detail_number" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/btn_mod_down"
+                android:layout_gravity="center_horizontal"
+                android:src="@drawable/ic_arrow_down" />
+
+        </LinearLayout>
     </LinearLayout>
 
-</RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_weight="1">
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Battle Monster"
+            android:id="@+id/btn_battle"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true" />
+    </RelativeLayout>
+
+</LinearLayout>
