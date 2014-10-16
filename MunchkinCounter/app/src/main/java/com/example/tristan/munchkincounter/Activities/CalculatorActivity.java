@@ -2,18 +2,23 @@ package com.example.tristan.munchkincounter.Activities;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.support.v4.app.NavUtils;
+import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.WindowManager;
+import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.example.tristan.munchkincounter.Data;
 import com.example.tristan.munchkincounter.FontCache;
 import com.example.tristan.munchkincounter.Player;
-import com.example.tristan.munchkincounter.PlayerData;
 import com.example.tristan.munchkincounter.R;
 import com.example.tristan.munchkincounter.SoundPlayer;
 
@@ -44,6 +49,7 @@ public class CalculatorActivity extends BaseActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.actions_calculator, menu);
         return true;
     }
@@ -70,7 +76,7 @@ public class CalculatorActivity extends BaseActivity {
 
         // get the player and assign the name to textView
         int pos = extras.getInt("position");
-        player = PlayerData.getPlayer(pos);
+        player = Data.adapter.getItem(pos);
         assignText(R.id.txt_player_name, player.getName());
         playerModifier = player.getBonus();
 
@@ -146,7 +152,7 @@ public class CalculatorActivity extends BaseActivity {
         builder.setTitle("Scoreboard");
 
         ListView lv = new ListView(this);
-        //TODO: lv.setAdapter(Data.adapter);
+        lv.setAdapter(Data.adapter);
         builder.setView(lv);
 
         // set dismiss button

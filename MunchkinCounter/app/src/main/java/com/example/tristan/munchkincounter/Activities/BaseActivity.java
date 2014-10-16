@@ -9,7 +9,7 @@ import android.view.MenuItem;
 import android.view.WindowManager;
 import android.widget.ImageView;
 
-import com.example.tristan.munchkincounter.PlayerData;
+import com.example.tristan.munchkincounter.Data;
 import com.example.tristan.munchkincounter.R;
 
 import java.util.Random;
@@ -89,7 +89,9 @@ public class BaseActivity extends ActionBarActivity {
      * Transition Back to the previous screen.
      */
     protected void transitionBack() {
-        PlayerData.saveData();
+        Data.adapter.saveData();
+        Data.adapter.notifyDataSetChanged();
+        Data.adapter.sortList();
         finish();
         overridePendingTransition(R.anim.push_right_out, R.anim.push_left_in);
     }

@@ -3,6 +3,8 @@ package com.example.tristan.munchkincounter.Activities;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
+import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.text.InputType;
 import android.view.ContextMenu;
@@ -12,32 +14,32 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 
+import com.example.tristan.munchkincounter.Data;
 import com.example.tristan.munchkincounter.ListAdapter;
 import com.example.tristan.munchkincounter.Player;
-import com.example.tristan.munchkincounter.PlayerData;
 import com.example.tristan.munchkincounter.R;
 import com.example.tristan.munchkincounter.SoundPlayer;
 
+import java.util.Random;
+
 
 public class SummaryActivity extends BaseActivity {
-    ListAdapter playerList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_summary);
 
-        // initialise player data
-        PlayerData.getInstance();
-        PlayerData.initialise(this);
-
-        // initialise ListAdapter for listView
-        playerList = new ListAdapter(this, PlayerData.get());
-
-        // setup listView
+        // set the array adapter to listview
+        Data.adapter = new ListAdapter(this);
         ListView playerList = (ListView)findViewById(R.id.playerList);
+        playerList.setAdapter(Data.adapter);
+
+        // set a listener to transition to detail activity when pressed
         playerList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View v, int position, long l) {
@@ -45,7 +47,12 @@ public class SummaryActivity extends BaseActivity {
             }
         });
 
+        // set context menu for listView
         registerForContextMenu(playerList);
+
+        // load persistent data if available
+        Data.adapter.readData();
+
         findViewById(R.id.btn_level).setOnClickListener(onClickListener);
         findViewById(R.id.btn_total).setOnClickListener(onClickListener);
 
@@ -57,12 +64,14 @@ public class SummaryActivity extends BaseActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.actions_summary, menu);
         return true;
     }
 
     @Override
-    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+    public void onCreateContextMenu(ContextMenu menu, View v,
+                                    ContextMenu.ContextMenuInfo menuInfo) {
         super.onCreateContextMenu(menu, v, menuInfo);
         getMenuInflater().inflate(R.menu.context_menu, menu);
     }
@@ -75,10 +84,10 @@ public class SummaryActivity extends BaseActivity {
                 showInputDialog();
                 return true;
             case R.id.reset_players:
-                PlayerData.resetAllPlayers();
+                Data.adapter.resetAllPlayers();
                 return true;
             case R.id.delete_players:
-                PlayerData.removeAllPlayers();
+                Data.adapter.deleteAllPlayers();
                 return true;
             case R.id.settings:
                 Intent i = new Intent(this, UserSettingActivity.class);
@@ -94,20 +103,13 @@ public class SummaryActivity extends BaseActivity {
         AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo)item.getMenuInfo();
         switch (item.getItemId()) {
             case R.id.delete:
-                PlayerData.removePlayer(info.position);
+                Data.adapter.deletePlayer(info.position);
                 return true;
             case R.id.reset_player:
-                PlayerData.resetPlayer(info.position);
-
+                Data.adapter.resetPlayer(info.position);
             default:
                 return super.onContextItemSelected(item);
         }
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        playerList.notifyDataSetChanged();
     }
 
     /**
@@ -116,7 +118,7 @@ public class SummaryActivity extends BaseActivity {
     @Override
     public void onBackPressed() {
         SoundPlayer.cleanUp();
-        PlayerData.saveData();
+        Data.adapter.saveData();
         finish();
     }
 
@@ -151,13 +153,14 @@ public class SummaryActivity extends BaseActivity {
     // add a new player to the listview
     private void addNewPlayer(String name) {
         Player p = new Player(name);
-        PlayerData.addNewPlayer(p);
+        Data.adapter.addNewPlayer(p);
     }
 
     private void startDetailActivity(int position) {
         Intent intent = new Intent(this, DetailActivity.class);
         intent.putExtra("position", position);
-        startActivityForResult(intent, 1);
+
+        startActivity(intent);
         overridePendingTransition(R.anim.push_right_in, R.anim.push_left_out);
     }
 
@@ -171,17 +174,17 @@ public class SummaryActivity extends BaseActivity {
                 case R.id.btn_level:
                     findViewById(R.id.btn_level).setBackgroundColor(selected);
                     findViewById(R.id.btn_total).setBackgroundColor(notSelected);
-                    PlayerData.setSortByLevel_True();
+                    Data.sortByLevel = true;
                     break;
                 case R.id.btn_total:
                     findViewById(R.id.btn_level).setBackgroundColor(notSelected);
                     findViewById(R.id.btn_total).setBackgroundColor(selected);
-                    PlayerData.setSortByLevel_False();
+                    Data.sortByLevel = false;
                     break;
             }
 
-            PlayerData.sortList();
-            playerList.notifyDataSetChanged();
+            Data.adapter.sortList();
+            Data.adapter.notifyDataSetChanged();
         }
     };
 }

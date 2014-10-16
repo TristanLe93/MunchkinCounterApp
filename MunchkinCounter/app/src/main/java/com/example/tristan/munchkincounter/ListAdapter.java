@@ -26,10 +26,9 @@ public class ListAdapter extends BaseAdapter {
     private LayoutInflater layoutInflater;
     private final String key = "playerData";
 
-    public ListAdapter(Context context, ArrayList<Player> theData) {
-        listData = theData;
+    public ListAdapter(Context context) {
+        listData = new ArrayList<Player>();
         layoutInflater = LayoutInflater.from(context);
-        this.notifyDataSetChanged();
     }
 
     @Override
@@ -45,6 +44,114 @@ public class ListAdapter extends BaseAdapter {
     @Override
     public long getItemId(int position) {
         return position;
+    }
+
+    public void addNewPlayer(Player p) {
+        listData.add(p);
+        this.notifyDataSetChanged();
+        saveData();
+    }
+
+    public void deletePlayer(int position) {
+        listData.remove(position);
+        this.notifyDataSetChanged();
+        saveData();
+    }
+
+    public void resetPlayer(int position) {
+        Player p = listData.get(position);
+        p.reset();
+        this.notifyDataSetChanged();
+        saveData();
+    }
+
+    public void killPlayer(int position) {
+        Player p = listData.get(position);
+        p.setGearZero();
+
+        // get user setting for death penalty
+        SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(
+                layoutInflater.getContext());
+        String value = pref.getString("pref_deathPenalty", "0");
+        int i = Integer.parseInt(value);
+
+        /**
+         * -1: Reduce player level by ONE
+         * -2: Reduce player level by TWO
+         * 1: Make player level 1
+         */
+        switch (i) {
+           case -1: p.decrementLevel(); break;
+           case -2: p.decrementLevel(); p.decrementLevel(); break;
+           case 1: p.setLevelOne(); break;
+        }
+    }
+
+    /**
+     * Resets all players to level 1 with zero gear bonus.
+     */
+    public void resetAllPlayers() {
+        for (int i = 0; i < listData.size(); i++) {
+            resetPlayer(i);
+        }
+    }
+
+    public void deleteAllPlayers() {
+        while (listData.size() > 0) {
+            deletePlayer(0);
+        }
+    }
+
+    // save player data to persistent store
+    public void saveData() {
+        SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(layoutInflater.getContext());
+        SharedPreferences.Editor editor = sharedPrefs.edit();
+        Gson gson = new Gson();
+
+        String json = gson.toJson(listData);
+
+        editor.putString(key, json);
+        editor.commit();
+    }
+
+    // read player data from persistent store
+    public void readData() {
+        SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(layoutInflater.getContext());
+        Gson gson = new Gson();
+        String json = sharedPrefs.getString(key, null);
+        Type type = new TypeToken<ArrayList<Player>>() {}.getType();
+        ArrayList<Player> list = gson.fromJson(json, type);
+
+        if (list != null) {
+            listData = list;
+            this.notifyDataSetChanged();
+        }
+    }
+
+    public void sortList() {
+        if (Data.sortByLevel) {
+            sortByLevel();
+        } else {
+            sortByTotal();
+        }
+    }
+
+    private void sortByLevel() {
+        Collections.sort(listData, new Comparator<Player>() {
+            @Override
+            public int compare(Player player1, Player player2) {
+                return player2.getLevel() - player1.getLevel();
+            }
+        });
+    }
+
+    private void sortByTotal() {
+        Collections.sort(listData, new Comparator<Player>() {
+            @Override
+            public int compare(Player player1, Player player2) {
+                return player2.getTotal() - player1.getTotal();
+            }
+        });
     }
 
     /**

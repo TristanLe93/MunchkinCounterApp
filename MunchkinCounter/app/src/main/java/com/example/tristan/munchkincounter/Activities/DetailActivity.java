@@ -3,14 +3,17 @@ package com.example.tristan.munchkincounter.Activities;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.support.v4.app.NavUtils;
+import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.TextView;
 
+import com.example.tristan.munchkincounter.Data;
 import com.example.tristan.munchkincounter.FontCache;
 import com.example.tristan.munchkincounter.Player;
-import com.example.tristan.munchkincounter.PlayerData;
 import com.example.tristan.munchkincounter.R;
 import com.example.tristan.munchkincounter.SoundPlayer;
 
@@ -47,7 +50,7 @@ public class DetailActivity extends BaseActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.kill_player:
-                PlayerData.killPlayer(player);
+                Data.adapter.killPlayer(position);
                 updateUI();
                 return true;
             case R.id.reset_player:
@@ -55,7 +58,7 @@ public class DetailActivity extends BaseActivity {
                 updateUI();
                 return true;
             case R.id.remove_player:
-                PlayerData.removePlayer(player);
+                Data.adapter.deletePlayer(position);
                 transitionBack();
                 return true;
         }
@@ -75,7 +78,7 @@ public class DetailActivity extends BaseActivity {
     private void setup() {
         // get the player from list
         Bundle extras = getIntent().getExtras();
-        player = PlayerData.getPlayer(extras.getInt("position"));
+        player = Data.adapter.getItem(extras.getInt("position"));
         position = extras.getInt("position");
         getSupportActionBar().setTitle(player.getName());
 
