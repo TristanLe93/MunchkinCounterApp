@@ -66,6 +66,12 @@ public class DetailActivity extends BaseActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        updateUI();
+    }
+
     /**
      * Set the player data and TextView text fonts.
      */
@@ -146,7 +152,7 @@ public class DetailActivity extends BaseActivity {
         Intent intent = new Intent(this, CalculatorActivity.class);
         int pos = getIntent().getExtras().getInt("position");
         intent.putExtra("position", pos);
-        startActivity(intent);
+        startActivityForResult(intent, 2);
         overridePendingTransition(R.anim.push_right_in, R.anim.push_left_out);
     }
 
