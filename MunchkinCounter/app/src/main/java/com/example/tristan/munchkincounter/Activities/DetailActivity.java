@@ -20,6 +20,7 @@ import com.example.tristan.munchkincounter.SoundPlayer;
 
 public class DetailActivity extends BaseActivity {
     private Player player;
+    private int position;
 
     /**
      * Initialise the Activity
@@ -37,7 +38,6 @@ public class DetailActivity extends BaseActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.actions_detail, menu);
         return true;
     }
@@ -50,7 +50,7 @@ public class DetailActivity extends BaseActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.kill_player:
-                player.setGearZero();
+                Data.adapter.killPlayer(position);
                 updateUI();
                 return true;
             case R.id.reset_player:
@@ -58,8 +58,7 @@ public class DetailActivity extends BaseActivity {
                 updateUI();
                 return true;
             case R.id.remove_player:
-                int pos = getIntent().getExtras().getInt("position");
-                Data.adapter.deletePlayer(pos);
+                Data.adapter.deletePlayer(position);
                 transitionBack();
                 return true;
         }
@@ -74,6 +73,7 @@ public class DetailActivity extends BaseActivity {
         // get the player from list
         Bundle extras = getIntent().getExtras();
         player = Data.adapter.getItem(extras.getInt("position"));
+        position = extras.getInt("position");
         getSupportActionBar().setTitle(player.getName());
 
         // set strength textfont

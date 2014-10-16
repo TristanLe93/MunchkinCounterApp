@@ -7,8 +7,25 @@
     <string name="roll_dice">Roll Dice (D6)</string>
     <string name="reset_player">Reset Player</string>
     <string name="show_scoreboard">Show Scoreboard</string>
+    <string name="settings_title">Settings</string>
+    <string name="enable_sounds">Enable Sounds</string>
+    <string name="death_penalty">Additional Death Penalty</string>
 
     <color name="background_color">#ffc654</color>
     <color name="text_color">#270b00</color>
     <color name="monster_color">#c0b8a1</color>
+
+    <string-array name="death_options">
+        <item>None</item>
+        <item>-1 Level</item>
+        <item>-2 Levels</item>
+        <item>Back to level 1</item>
+    </string-array>
+
+    <string-array name="death_values">
+        <item>0</item>
+        <item>-1</item>
+        <item>-2</item>
+        <item>1</item>
+    </string-array>
 </resources>

@@ -22,7 +22,6 @@ import java.util.Comparator;
  * ListAdapter class is used to manage a custom cell in a listview.
  */
 public class ListAdapter extends BaseAdapter {
-
     private ArrayList<Player> listData;
     private LayoutInflater layoutInflater;
     private final String key = "playerData";
@@ -47,8 +46,6 @@ public class ListAdapter extends BaseAdapter {
         return position;
     }
 
-    public int getItemPos(Player player) { return listData.indexOf(player); }
-
     public void addNewPlayer(Player p) {
         listData.add(p);
         this.notifyDataSetChanged();
@@ -66,6 +63,28 @@ public class ListAdapter extends BaseAdapter {
         p.reset();
         this.notifyDataSetChanged();
         saveData();
+    }
+
+    public void killPlayer(int position) {
+        Player p = listData.get(position);
+        p.setGearZero();
+
+        // get user setting for death penalty
+        SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(
+                layoutInflater.getContext());
+        String value = pref.getString("pref_deathPenalty", "0");
+        int i = Integer.parseInt(value);
+
+        /**
+         * -1: Reduce player level by ONE
+         * -2: Reduce player level by TWO
+         * 1: Make player level 1
+         */
+        switch (i) {
+           case -1: p.decrementLevel(); break;
+           case -2: p.decrementLevel(); p.decrementLevel(); break;
+           case 1: p.setLevelOne(); break;
+        }
     }
 
     /**

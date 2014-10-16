@@ -89,6 +89,10 @@ public class SummaryActivity extends BaseActivity {
             case R.id.delete_players:
                 Data.adapter.deleteAllPlayers();
                 return true;
+            case R.id.settings:
+                Intent i = new Intent(this, UserSettingActivity.class);
+                startActivity(i);
+                overridePendingTransition(R.anim.push_right_out, R.anim.push_left_in);
         }
 
         return super.onOptionsItemSelected(item);

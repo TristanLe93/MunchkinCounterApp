@@ -21,17 +21,20 @@
         <activity android:name=".Activities.DetailActivity"
             android:configChanges="orientation"
             android:screenOrientation="portrait"
-            android:label="Player Name"
-            android:parentActivityName=".Activities.SummaryActivity">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".SummaryActivity"/>
+            android:label="Player Name">
         </activity>
         <activity android:name=".Activities.CalculatorActivity"
             android:configChanges="orientation"
             android:screenOrientation="portrait"
             android:label="Battle">
         </activity>
-
+        <activity android:name=".Activities.UserSettingActivity"
+            android:label="Settings"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".Activities.SummaryActivity"/>
+        </activity>
     </application>
 </manifest>

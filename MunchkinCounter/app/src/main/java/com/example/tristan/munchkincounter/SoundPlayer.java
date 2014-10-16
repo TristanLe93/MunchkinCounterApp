@@ -1,8 +1,10 @@
 package com.example.tristan.munchkincounter;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.media.AudioManager;
 import android.media.SoundPool;
+import android.preference.PreferenceManager;
 
 import java.util.HashMap;
 
@@ -54,6 +56,7 @@ public class SoundPlayer {
      * @param resource The resource value of the sound to be played.
      */
     public static void playSound(int resource) {
+        if (!canPlaySound()) return;
         soundPool.play(soundPoolMap.get(resource), 1f, 1f, 0, 0, 1f);
     }
 
@@ -65,5 +68,16 @@ public class SoundPlayer {
         soundPool = null;
         soundPoolMap.clear();
         instance = null;
+    }
+
+    /**
+     * Does the user's settings allow the app to play sound?
+     * @return true or false
+     */
+    private static boolean canPlaySound() {
+        SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(context);
+        boolean canPlay = pref.getBoolean("pref_enableSounds", true);
+
+        return canPlay;
     }
 }

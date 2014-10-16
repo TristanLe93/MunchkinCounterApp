@@ -1,13 +1,10 @@
 package com.example.tristan.munchkincounter;
 
-import java.io.Serializable;
-
 /**
  * Player class contains information of the player's munchkin.
  * All stat changes are performed here.
  */
 public class Player {
-
     private String name;
     private int level;
     private int gear;
@@ -40,29 +37,24 @@ public class Player {
         bonus = 0;
     }
 
+    public void setLevelOne() { level = 1; }
     public void setGearZero() {
         gear = 0;
     }
-
     public void incrementLevel() {
         level += 1;
     }
-
     public void decrementLevel() {
         if (level - 1 > 0) {
             level -= 1;
         }
     }
-
     public void incrementGear() {
         gear += 1;
     }
-
     public void decrementGear() {
         gear -= 1;
     }
-
     public void incrementBonus() { bonus += 1; }
-
     public void decrementBonus() { bonus -= 1; }
 }
