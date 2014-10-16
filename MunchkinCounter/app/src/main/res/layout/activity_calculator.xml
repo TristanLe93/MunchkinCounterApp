@@ -36,7 +36,8 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/btn_player_level_up"
                 android:layout_gravity="center_horizontal"
-                android:src="@drawable/ic_arrow_up" />
+                android:src="@drawable/ic_arrow_up"
+                android:adjustViewBounds="false" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -53,7 +54,8 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/btn_player_level_down"
                 android:layout_gravity="center_horizontal"
-                android:src="@drawable/ic_arrow_down" />
+                android:src="@drawable/ic_arrow_down"
+                android:adjustViewBounds="false" />
         </LinearLayout>
 
         <LinearLayout
@@ -167,7 +169,7 @@
         <RelativeLayout
             android:layout_width="50dp"
             android:layout_height="match_parent"
-            android:background="@color/background_color"
+            android:background="@drawable/score_border_player"
             android:layout_weight="2">
 
             <TextView
@@ -186,7 +188,8 @@
         <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_weight="1">
+            android:layout_weight="1"
+            android:background="@drawable/score_border_vs">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -204,7 +207,7 @@
         <RelativeLayout
             android:layout_width="50dp"
             android:layout_height="match_parent"
-            android:background="@color/monster_color"
+            android:background="@drawable/score_border_enemy"
             android:layout_weight="2">
 
             <TextView

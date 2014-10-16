@@ -9,7 +9,8 @@
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:background="@color/background_color">
 
         <RelativeLayout
             android:id="@+id/btn_level"
@@ -51,8 +52,9 @@
     <ListView
         android:id="@+id/playerList"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="fill_parent"
         android:dividerHeight="1dp"
-        android:divider="#000000" />
+        android:divider="#000000"
+        android:background="@drawable/listview_border"/>
 
 </LinearLayout>
