@@ -13,17 +13,13 @@ public class Player {
     public String getName() {
         return name;
     }
-
     public int getTotal() {
         return level + gear + bonus;
     }
-
     public int getLevel() {
         return level;
     }
-
     public int getGear() { return gear; }
-
     public int getBonus() { return bonus; }
 
     public Player(String name) {
@@ -32,8 +28,8 @@ public class Player {
     }
 
     public void reset() {
-        level = 1;
-        gear = 0;
+        setLevelOne();
+        setGearZero();
         bonus = 0;
     }
 
