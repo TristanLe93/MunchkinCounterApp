@@ -1,5 +1,7 @@
 package com.example.tristan.munchkincounter.Activities;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.media.AudioManager;
 import android.os.Build;
@@ -11,6 +13,7 @@ import android.support.v4.app.NavUtils;
 import android.view.MenuItem;
 import android.view.WindowManager;
 
+import com.example.tristan.munchkincounter.Data;
 import com.example.tristan.munchkincounter.R;
 
 /**
@@ -29,6 +32,25 @@ public class UserSettingActivity extends PreferenceActivity {
 
         addPreferencesFromResource(R.xml.settings);
         setPreferenceListener();
+
+        Preference about = (Preference)findPreference("pref_about");
+        about.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+            @Override
+            public boolean onPreferenceClick(Preference preference) {
+                dialogAbout();
+                return false;
+            }
+        });
+
+        Preference disclaimer = (Preference)findPreference("pref_disclaimer");
+        disclaimer.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+            @Override
+            public boolean onPreferenceClick(Preference preference) {
+                dialogDisclaimer();
+                return false;
+            }
+        });
+
     }
 
     @Override
@@ -50,21 +72,53 @@ public class UserSettingActivity extends PreferenceActivity {
     }
 
     private void setPreferenceListener() {
-        ListPreference deathOption = (ListPreference)findPreference("pref_deathPenalty");
+        ListPreference deathOption = (ListPreference) findPreference("pref_deathPenalty");
         deathOption.setSummary(deathOption.getEntry());
 
         deathOption.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
             @Override
             public boolean onPreferenceChange(Preference preference, Object newValue) {
-                String nv = (String)newValue;
+                String nv = (String) newValue;
 
                 if (preference.getKey().equals("pref_deathPenalty")) {
-                    ListPreference deathOption = (ListPreference)preference;
+                    ListPreference deathOption = (ListPreference) preference;
                     int i = deathOption.findIndexOfValue(nv);
                     deathOption.setSummary(deathOption.getEntries()[i]);
                 }
                 return true;
             }
         });
+    }
+
+    private void dialogAbout() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("About");
+        builder.setMessage("Developed by Tristan Le.");
+
+        // dismiss
+        builder.setNegativeButton("You got it!", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+            }
+        });
+
+        AlertDialog dialog = builder.create();
+        dialog.show();
+    }
+
+    private void dialogDisclaimer() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Disclaimer");
+        builder.setMessage("Some disclaimer message saying that this app is not endorsed or associated with Steve Jackson Games.");
+
+        // dismiss
+        builder.setNegativeButton("You got it!", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+            }
+        });
+
+        AlertDialog dialog = builder.create();
+        dialog.show();
     }
 }

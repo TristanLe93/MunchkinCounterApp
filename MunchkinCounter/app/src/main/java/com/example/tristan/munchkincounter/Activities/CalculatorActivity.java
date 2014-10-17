@@ -33,6 +33,8 @@ public class CalculatorActivity extends BaseActivity {
     private String helper;
     private int helperStrength;
 
+    private int listPosition;
+
     /**
      * Initialise the battle screen
      */
@@ -74,8 +76,8 @@ public class CalculatorActivity extends BaseActivity {
         Bundle extras = getIntent().getExtras();
 
         // get the player and assign the name to textView
-        int pos = extras.getInt("position");
-        player = Data.adapter.getItem(pos);
+        listPosition = extras.getInt("position");
+        player = Data.adapter.getItem(listPosition);
         playerModifier = player.getBonus();
         helper = "";
         helperStrength = 0;
@@ -155,13 +157,19 @@ public class CalculatorActivity extends BaseActivity {
      */
     private void showScoreboard() {
         final AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("Add Helper");
+        builder.setTitle("Select combat helper...");
 
         // create player selection list
         ArrayList<String> playerData = new ArrayList<String>();
         playerData.add("None");
-        for (Player p : Data.adapter.getListData()) {
-            playerData.add(p.toString());
+        for (int i = 0; i < Data.adapter.getCount(); i++) {
+            Player p = Data.adapter.getItem(i);
+
+            if (listPosition == i) {
+                playerData.add(p.returnDoppelganger());
+            } else {
+                playerData.add(p.toString());
+            }
         }
 
         // set dismiss button
@@ -177,10 +185,9 @@ public class CalculatorActivity extends BaseActivity {
         ListView lv = new ListView(this);
         ArrayAdapter adapter = new ArrayAdapter(
                 this,
-                android.R.layout.simple_list_item_single_choice,
+                android.R.layout.simple_list_item_1,
                 playerData);
         lv.setAdapter(adapter);
-        lv.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
         builder.setView(lv);
 
         // create and show
@@ -192,12 +199,18 @@ public class CalculatorActivity extends BaseActivity {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long itemId) {
                 if (position == 0) {
+                    // No helper was selected
                     helperStrength = 0;
                     helper = "";
+                } else if (listPosition == position-1) {
+                    // doppelganger was selected
+                    helperStrength = player.getTotal() + playerModifier;
+                    helper = " + Doppelganger(" + helperStrength + ")";
                 } else  {
+                    // grab the helper's details
                     Player p = Data.adapter.getItem(position-1);
                     helperStrength = p.getTotal();
-                    helper = " +" + p.getName() + "(" + helperStrength + ")";
+                    helper = " + " + p.getName() + "(" + helperStrength + ")";
                 }
 
                 updateUI();
