@@ -11,10 +11,10 @@
         android:icon="@drawable/ic_action_user_add"
         android:title="@string/add_player"
         munchkinCounter:showAsAction="ifRoom" />
-    <item android:id="@+id/reset_players"
-        android:title="Reset all players" />
     <item android:id="@+id/delete_players"
-        android:title="Delete all players" />
+        android:title="New Game" />
+    <item android:id="@+id/reset_players"
+        android:title="Reset Game" />
     <item android:id="@+id/settings"
         android:title="Settings" />
 </menu>

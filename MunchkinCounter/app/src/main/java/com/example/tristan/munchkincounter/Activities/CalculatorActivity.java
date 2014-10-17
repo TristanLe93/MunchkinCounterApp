@@ -2,15 +2,12 @@ package com.example.tristan.munchkincounter.Activities;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
-import android.support.v4.app.NavUtils;
-import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.WindowManager;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -22,7 +19,7 @@ import com.example.tristan.munchkincounter.Player;
 import com.example.tristan.munchkincounter.R;
 import com.example.tristan.munchkincounter.SoundPlayer;
 
-import java.util.Random;
+import java.util.ArrayList;
 
 /**
  * Created by Tristan on 7/10/2014.
@@ -32,6 +29,9 @@ public class CalculatorActivity extends BaseActivity {
     private int playerModifier;
     private int monsterLevel;
     private int monsterModifier;
+
+    private String helper;
+    private int helperStrength;
 
     /**
      * Initialise the battle screen
@@ -49,7 +49,6 @@ public class CalculatorActivity extends BaseActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.actions_calculator, menu);
         return true;
     }
@@ -60,7 +59,7 @@ public class CalculatorActivity extends BaseActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.show_scoreboard:
+            case R.id.add_helper:
                 showScoreboard();
                 return true;
         }
@@ -77,8 +76,9 @@ public class CalculatorActivity extends BaseActivity {
         // get the player and assign the name to textView
         int pos = extras.getInt("position");
         player = Data.adapter.getItem(pos);
-        assignText(R.id.txt_player_name, player.getName());
         playerModifier = player.getBonus();
+        helper = "";
+        helperStrength = 0;
 
         monsterLevel = 0;
         monsterModifier = 0;
@@ -93,6 +93,11 @@ public class CalculatorActivity extends BaseActivity {
         mStr.setTypeface(tf);
         pName.setTypeface(tf);
         mName.setTypeface(tf);
+
+        // Change monster color side.
+        // There is a bug that changes the color so we going to override it for now....)
+        findViewById(R.id.monster_panel).setBackgroundColor(getResources().getColor(R.color.monster_color));
+        findViewById(R.id.monster_stats_panel).setBackgroundColor(getResources().getColor(R.color.monster_color));
     }
 
     /**
@@ -112,6 +117,7 @@ public class CalculatorActivity extends BaseActivity {
         setOnClickListener(R.id.btn_monster_level_down);
         setOnClickListener(R.id.btn_monster_mod_up);
         setOnClickListener(R.id.btn_monster_mod_down);
+
     }
 
     /**
@@ -148,15 +154,18 @@ public class CalculatorActivity extends BaseActivity {
      * Shows the current status of the scoreboard.
      */
     private void showScoreboard() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("Scoreboard");
+        final AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Add Helper");
 
-        ListView lv = new ListView(this);
-        lv.setAdapter(Data.adapter);
-        builder.setView(lv);
+        // create player selection list
+        ArrayList<String> playerData = new ArrayList<String>();
+        playerData.add("None");
+        for (Player p : Data.adapter.getListData()) {
+            playerData.add(p.toString());
+        }
 
         // set dismiss button
-        builder.setPositiveButton("OK",
+        builder.setPositiveButton("Cancel",
                 new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int i) {
@@ -164,9 +173,37 @@ public class CalculatorActivity extends BaseActivity {
                     }
                 });
 
+        // setup the listView
+        ListView lv = new ListView(this);
+        ArrayAdapter adapter = new ArrayAdapter(
+                this,
+                android.R.layout.simple_list_item_single_choice,
+                playerData);
+        lv.setAdapter(adapter);
+        lv.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
+        builder.setView(lv);
+
         // create and show
-        AlertDialog dialog = builder.create();
+        final AlertDialog dialog = builder.create();
         dialog.show();
+
+        // updates the UI to include a selected combat helper
+        lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int position, long itemId) {
+                if (position == 0) {
+                    helperStrength = 0;
+                    helper = "";
+                } else  {
+                    Player p = Data.adapter.getItem(position-1);
+                    helperStrength = p.getTotal();
+                    helper = " +" + p.getName() + "(" + helperStrength + ")";
+                }
+
+                updateUI();
+                dialog.dismiss();
+            }
+        });
     }
 
     /**
@@ -177,13 +214,14 @@ public class CalculatorActivity extends BaseActivity {
         assignText(R.id.txt_player_level, player.getLevel());
         assignText(R.id.txt_player_gear, player.getGear());
         assignText(R.id.txt_player_modifier, playerModifier);
+        assignText(R.id.txt_player_name, player.getName() + helper);
 
         // assign monster values
         assignText(R.id.txt_monster_level, monsterLevel);
         assignText(R.id.txt_monster_modifier, monsterModifier);
 
         // assign total strength values
-        int playerStrength = player.getLevel() + player.getGear() + playerModifier;
+        int playerStrength = player.getLevel() + player.getGear() + playerModifier + helperStrength;
         int monsterStrength = monsterLevel + monsterModifier;
         assignText(R.id.txt_player_strength, playerStrength);
         assignText(R.id.txt_monster_strength, monsterStrength);

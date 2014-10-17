@@ -3,8 +3,6 @@ package com.example.tristan.munchkincounter.Activities;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.Color;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.text.InputType;
 import android.view.ContextMenu;
@@ -14,17 +12,13 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.RelativeLayout;
 
 import com.example.tristan.munchkincounter.Data;
 import com.example.tristan.munchkincounter.ListAdapter;
 import com.example.tristan.munchkincounter.Player;
 import com.example.tristan.munchkincounter.R;
 import com.example.tristan.munchkincounter.SoundPlayer;
-
-import java.util.Random;
 
 
 public class SummaryActivity extends BaseActivity {
@@ -54,7 +48,7 @@ public class SummaryActivity extends BaseActivity {
         Data.adapter.readData();
 
         findViewById(R.id.btn_level).setOnClickListener(onClickListener);
-        findViewById(R.id.btn_total).setOnClickListener(onClickListener);
+        findViewById(R.id.btn_total_sort).setOnClickListener(onClickListener);
 
         // load soundPlayer
         SoundPlayer.getInstance();
@@ -84,10 +78,10 @@ public class SummaryActivity extends BaseActivity {
                 showInputDialog();
                 return true;
             case R.id.reset_players:
-                Data.adapter.resetAllPlayers();
+                dialogReset();
                 return true;
             case R.id.delete_players:
-                Data.adapter.deleteAllPlayers();
+                dialogDelete();
                 return true;
             case R.id.settings:
                 Intent i = new Intent(this, UserSettingActivity.class);
@@ -164,6 +158,54 @@ public class SummaryActivity extends BaseActivity {
         overridePendingTransition(R.anim.push_right_in, R.anim.push_left_out);
     }
 
+    private void dialogDelete() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Are you sure?");
+        builder.setMessage("Action: New Game.");
+
+        // dismiss
+        builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+            }
+        });
+
+        // delete all players from the game
+        builder.setPositiveButton("YES", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                Data.adapter.deleteAllPlayers();
+            }
+        });
+
+        AlertDialog dialog = builder.create();
+        dialog.show();
+    }
+
+    private void dialogReset() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Are you sure?");
+        builder.setMessage("Action: Reset Game.");
+
+        // dismiss
+        builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+            }
+        });
+
+        // delete all players from the game
+        builder.setPositiveButton("YES", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                Data.adapter.resetAllPlayers();
+            }
+        });
+
+        AlertDialog dialog = builder.create();
+        dialog.show();
+    }
+
     private View.OnClickListener onClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
@@ -173,12 +215,12 @@ public class SummaryActivity extends BaseActivity {
             switch (view.getId()) {
                 case R.id.btn_level:
                     findViewById(R.id.btn_level).setBackgroundColor(selected);
-                    findViewById(R.id.btn_total).setBackgroundColor(notSelected);
+                    findViewById(R.id.btn_total_sort).setBackgroundColor(notSelected);
                     Data.sortByLevel = true;
                     break;
-                case R.id.btn_total:
+                case R.id.btn_total_sort:
                     findViewById(R.id.btn_level).setBackgroundColor(notSelected);
-                    findViewById(R.id.btn_total).setBackgroundColor(selected);
+                    findViewById(R.id.btn_total_sort).setBackgroundColor(selected);
                     Data.sortByLevel = false;
                     break;
             }

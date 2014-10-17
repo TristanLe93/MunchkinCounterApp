@@ -223,6 +223,7 @@
     </LinearLayout>
 
     <RelativeLayout
+        android:id="@+id/monster_panel"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/monster_color">
@@ -240,6 +241,7 @@
     </RelativeLayout>
 
     <LinearLayout
+        android:id="@+id/monster_stats_panel"
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

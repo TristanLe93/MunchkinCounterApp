@@ -16,5 +16,4 @@
         android:entryValues="@array/death_values"
         android:key="pref_deathPenalty">
     </ListPreference>
-
 </PreferenceScreen>

@@ -1,5 +1,7 @@
 package com.example.tristan.munchkincounter.Activities;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
@@ -58,8 +60,7 @@ public class DetailActivity extends BaseActivity {
                 updateUI();
                 return true;
             case R.id.remove_player:
-                Data.adapter.deletePlayer(position);
-                transitionBack();
+                dialogDelete();
                 return true;
         }
 
@@ -86,6 +87,35 @@ public class DetailActivity extends BaseActivity {
         Typeface tf = FontCache.get("fonts/quasimodo.ttf", this.getBaseContext());
         TextView strength = (TextView)findViewById(R.id.txt_strength);
         strength.setTypeface(tf);
+    }
+
+    /**
+     * Display a dialog to warn the user if they want
+     * to remove the player from the game.
+     */
+    private void dialogDelete() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Are you sure?");
+        builder.setMessage("Action: Remove player " + player.getName() + ".");
+
+        // dismiss
+        builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+            }
+        });
+
+        // remove the player from the game
+        builder.setPositiveButton("YES", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                Data.adapter.deletePlayer(position);
+                transitionBack();
+            }
+        });
+
+        AlertDialog dialog = builder.create();
+        dialog.show();
     }
 
     /**

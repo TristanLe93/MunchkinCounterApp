@@ -57,4 +57,16 @@ public class Player {
     }
     public void incrementBonus() { bonus += 1; }
     public void decrementBonus() { bonus -= 1; }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append(name);
+        sb.append(" - Level: ");
+        sb.append(level);
+        sb.append(" Total: ");
+        sb.append(getTotal());
+
+        return sb.toString();
+    }
 }

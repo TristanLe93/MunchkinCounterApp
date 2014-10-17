@@ -6,7 +6,7 @@
     <string name="delete">Delete Player</string>
     <string name="roll_dice">Roll Dice (D6)</string>
     <string name="reset_player">Reset Player</string>
-    <string name="show_scoreboard">Show Scoreboard</string>
+    <string name="show_scoreboard">Add Helper</string>
     <string name="settings_title">Settings</string>
     <string name="enable_sounds">Enable Sounds</string>
     <string name="death_penalty">Additional Death Penalty</string>

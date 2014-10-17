@@ -11,8 +11,8 @@
         android:title="@string/roll_dice"
         munchkinCounter:showAsAction="ifRoom" />
     <item
-        android:id="@+id/show_scoreboard"
-        android:icon="@drawable/ic_menu_chart"
+        android:id="@+id/add_helper"
+        android:icon="@drawable/ic_helper"
         android:title="@string/show_scoreboard"
         munchkinCounter:showAsAction="ifRoom" />
 </menu>

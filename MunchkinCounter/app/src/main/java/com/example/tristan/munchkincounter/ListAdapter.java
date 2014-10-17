@@ -26,6 +26,10 @@ public class ListAdapter extends BaseAdapter {
     private LayoutInflater layoutInflater;
     private final String key = "playerData";
 
+    public ArrayList<Player> getListData() {
+        return listData;
+    }
+
     public ListAdapter(Context context) {
         listData = new ArrayList<Player>();
         layoutInflater = LayoutInflater.from(context);
