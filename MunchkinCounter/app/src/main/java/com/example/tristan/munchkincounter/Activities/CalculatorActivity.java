@@ -32,7 +32,6 @@ public class CalculatorActivity extends BaseActivity {
 
     private String helper;
     private int helperStrength;
-
     private int listPosition;
 
     /**
@@ -251,11 +250,16 @@ public class CalculatorActivity extends BaseActivity {
                 // player buttons
                 case R.id.btn_player_level_up:
                     player.incrementLevel();
-                    SoundPlayer.playSound(R.raw.levelup1);
+
+                    if (player.getLevel() % 10 == 0) {
+                        SoundPlayer.playMedia(R.raw.winning);
+                    } else {
+                        SoundPlayer.playLevelUp();
+                    }
                     break;
                 case R.id.btn_player_level_down:
                     player.decrementLevel();
-                    SoundPlayer.playSound(R.raw.leveldown1);
+                    SoundPlayer.playLevelDown();
                     break;
                 case R.id.btn_player_gear_up:
                     player.incrementGear();

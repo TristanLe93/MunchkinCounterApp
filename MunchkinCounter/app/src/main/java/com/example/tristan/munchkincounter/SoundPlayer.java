@@ -3,16 +3,26 @@ package com.example.tristan.munchkincounter;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.media.AudioManager;
+import android.media.MediaPlayer;
 import android.media.SoundPool;
 import android.preference.PreferenceManager;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Random;
 
 public class SoundPlayer {
     private static SoundPlayer instance;
     private static SoundPool soundPool;
     private static HashMap<Integer, Integer> soundPoolMap;
     private static Context context;
+
+    private static MediaPlayer mediaPlayer;
+
+    private static final int MAX_CHANCE = 9;
+    private static final int LEVEL_UP_CHANCE = 2;       // 2/10 chance to play unique sound
+    private static final int LEVEL_DOWN_CHANCE = 2;     // 2/10 chance to play unique sound
 
     private SoundPlayer() {
     }
@@ -32,8 +42,7 @@ public class SoundPlayer {
     }
 
     /**
-     * Initialises the storage for the sounds and loads
-     * the sounds.
+     * Initialises the storage for the sounds and loads the sounds.
      *
      * @param theContext The Application context
      */
@@ -44,8 +53,11 @@ public class SoundPlayer {
 
         // load sounds
         soundPoolMap.put(R.raw.levelup1, soundPool.load(context, R.raw.levelup1, 1));
+        soundPoolMap.put(R.raw.levelup2, soundPool.load(context, R.raw.levelup2, 1));
         soundPoolMap.put(R.raw.leveldown1, soundPool.load(context, R.raw.leveldown1, 1));
+        soundPoolMap.put(R.raw.leveldown2, soundPool.load(context, R.raw.leveldown2, 1));
         soundPoolMap.put(R.raw.tick, soundPool.load(context, R.raw.tick, 1));
+        soundPoolMap.put(R.raw.winning, soundPool.load(context, R.raw.winning, 1));
     }
 
     /**
@@ -55,7 +67,50 @@ public class SoundPlayer {
      */
     public static void playSound(int resource) {
         if (!canPlaySound()) return;
+
+        // get random song to play
+        /*
+        List<Integer> keys = new ArrayList<Integer>(soundPoolMap.keySet());
+        Random r = new Random();
+        int randNum = r.nextInt(keys.size());
+        int res = keys.get(randNum);
+        */
         soundPool.play(soundPoolMap.get(resource), 1f, 1f, 0, 0, 1f);
+    }
+
+    public static void playMedia(int resource) {
+        MediaPlayer mediaPlayer = MediaPlayer.create(context, resource);
+        mediaPlayer.start();
+    }
+
+    /**
+     * Plays a level up sound.
+     * The chance of playing a unique sound is 2/10 chance.
+     */
+    public static void playLevelUp() {
+        Random r = new Random();
+        int chance = r.nextInt(MAX_CHANCE);
+
+        if (chance < LEVEL_UP_CHANCE) {
+            playSound(R.raw.levelup2);
+        } else {
+            playSound(R.raw.levelup1);
+        }
+    }
+
+    /**
+     * Plays a level down sound.
+     * The chance of playing a unique sound is 2/10 chance.
+     */
+    public static void playLevelDown() {
+        Random r = new Random();
+        int chance = r.nextInt(MAX_CHANCE);
+
+        if (chance < LEVEL_DOWN_CHANCE) {
+            playSound(R.raw.leveldown2);
+        } else {
+            playSound(R.raw.leveldown1);
+        }
     }
 
     /**
@@ -66,6 +121,7 @@ public class SoundPlayer {
         soundPool = null;
         soundPoolMap.clear();
         instance = null;
+        mediaPlayer.release();
     }
 
     /**
