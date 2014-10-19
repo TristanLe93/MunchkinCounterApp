@@ -18,8 +18,6 @@ public class SoundPlayer {
     private static HashMap<Integer, Integer> soundPoolMap;
     private static Context context;
 
-    private static MediaPlayer mediaPlayer;
-
     private static final int MAX_CHANCE = 9;
     private static final int LEVEL_UP_CHANCE = 2;       // 2/10 chance to play unique sound
     private static final int LEVEL_DOWN_CHANCE = 2;     // 2/10 chance to play unique sound
@@ -121,7 +119,6 @@ public class SoundPlayer {
         soundPool = null;
         soundPoolMap.clear();
         instance = null;
-        mediaPlayer.release();
     }
 
     /**
