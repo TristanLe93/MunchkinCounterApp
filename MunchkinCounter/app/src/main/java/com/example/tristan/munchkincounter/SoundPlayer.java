@@ -22,6 +22,9 @@ public class SoundPlayer {
     private static final int LEVEL_UP_CHANCE = 2;       // 2/10 chance to play unique sound
     private static final int LEVEL_DOWN_CHANCE = 2;     // 2/10 chance to play unique sound
 
+    private static final int[] levelUpSounds = {R.raw.levelup2};
+    private static final int[] levelDownSounds = {R.raw.leveldown2};
+
     private SoundPlayer() {
     }
 
@@ -90,7 +93,9 @@ public class SoundPlayer {
         int chance = r.nextInt(MAX_CHANCE);
 
         if (chance < LEVEL_UP_CHANCE) {
-            playSound(R.raw.levelup2);
+            int num = r.nextInt(levelUpSounds.length);
+            int resource = levelUpSounds[num];
+            playSound(resource);
         } else {
             playSound(R.raw.levelup1);
         }
@@ -105,7 +110,9 @@ public class SoundPlayer {
         int chance = r.nextInt(MAX_CHANCE);
 
         if (chance < LEVEL_DOWN_CHANCE) {
-            playSound(R.raw.leveldown2);
+            int num = r.nextInt(levelDownSounds.length);
+            int resource = levelDownSounds[num];
+            playSound(resource);
         } else {
             playSound(R.raw.leveldown1);
         }
