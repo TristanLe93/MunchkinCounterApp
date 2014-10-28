@@ -160,6 +160,7 @@
             android:layout_alignParentTop="true"
             android:layout_centerInParent="true"
             android:gravity="center_horizontal"/>
+
     </RelativeLayout>
 
     <LinearLayout
@@ -240,6 +241,7 @@
             android:typeface="serif"
             android:layout_alignParentTop="true"
             android:layout_centerInParent="true" />
+
     </RelativeLayout>
 
     <LinearLayout

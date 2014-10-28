@@ -224,7 +224,9 @@
             android:text="Battle Calculator"
             android:id="@+id/btn_battle"
             android:layout_centerVertical="true"
-            android:layout_centerHorizontal="true" />
+            android:layout_centerHorizontal="true"
+            android:typeface="serif"
+            android:textSize="@dimen/player_name" />
     </RelativeLayout>
 
 </LinearLayout>

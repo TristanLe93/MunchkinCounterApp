@@ -4,12 +4,13 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.graphics.Typeface;
 import android.os.Bundle;
-import android.os.Handler;
+import android.text.InputType;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -98,7 +99,7 @@ public class CalculatorActivity extends BaseActivity {
         mName.setTypeface(tf);
 
         // Change monster color side.
-        // There is a bug that changes the color so we going to override it for now....)
+        // (There is a bug that changes the color so we going to override it for now....)
         findViewById(R.id.monster_panel).setBackgroundColor(getResources().getColor(R.color.monster_color));
         findViewById(R.id.monster_stats_panel).setBackgroundColor(getResources().getColor(R.color.monster_color));
     }
@@ -121,6 +122,8 @@ public class CalculatorActivity extends BaseActivity {
         setOnClickListener(R.id.btn_monster_mod_up);
         setOnClickListener(R.id.btn_monster_mod_down);
 
+        // monster text values
+        findViewById(R.id.txt_monster_level).setOnClickListener(numberListener);
     }
 
     /**
@@ -206,13 +209,14 @@ public class CalculatorActivity extends BaseActivity {
                     helper = "";
                 } else if (listPosition == position-1) {
                     // doppelganger was selected
+                    Player p = Data.adapter.getItem(listPosition);
                     helperStrength = player.getLevel() + player.getGear() + playerModifier;
-                    helper = " + Doppelganger(" + helperStrength + ")";
+                    helper = " + " + p.getName() + " [" + helperStrength + "]";
                 } else  {
                     // grab the helper's details
                     Player p = Data.adapter.getItem(position-1);
                     helperStrength = p.getTotal();
-                    helper = " + " + p.getName() + "(" + helperStrength + ")";
+                    helper = " + " + p.getName() + " [" + helperStrength + "]";
                 }
 
                 updateUI();
@@ -222,12 +226,14 @@ public class CalculatorActivity extends BaseActivity {
     }
 
     private String doppelgangerText(Player p) {
+        int total = p.getLevel() + p.getGear() + playerModifier;
         StringBuilder sb = new StringBuilder();
-        sb.append("Doppelganger");
-        sb.append(" - Level: ");
+        sb.append(p.getName());
+        sb.append(" - [");
+        sb.append(total);
+        sb.append("] (Level: ");
         sb.append(p.getLevel());
-        sb.append(" Total: ");
-        sb.append(p.getLevel()+p.getGear()+playerModifier);
+        sb.append(")");
 
         return sb.toString();
     }
@@ -308,4 +314,28 @@ public class CalculatorActivity extends BaseActivity {
             updateUI();
         }
     };
+
+    private View.OnClickListener numberListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            switch (v.getId()) {
+                case R.id.txt_monster_level:
+                    addNumberDialog(monsterLevel, "Monster Level");
+            }
+        }
+    };
+
+    private void addNumberDialog(final int variable, String title) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Add " + title);
+
+        // Create EditText for entry
+        final EditText input = new EditText(this);
+        input.setInputType(InputType.TYPE_NUMBER_FLAG_SIGNED);
+        builder.setView(input);
+
+        // show dialog with keyboard input
+        AlertDialog dialog = builder.create();
+        dialog.show();
+    }
 }

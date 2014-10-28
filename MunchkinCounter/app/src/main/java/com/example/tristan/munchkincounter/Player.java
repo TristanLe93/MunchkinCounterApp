@@ -71,10 +71,11 @@ public class Player {
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append(name);
-        sb.append(" - Level: ");
-        sb.append(level);
-        sb.append(" Total: ");
+        sb.append(" - [");
         sb.append(getTotal());
+        sb.append("] (Level: ");
+        sb.append(level);
+        sb.append(")");
 
         return sb.toString();
     }
