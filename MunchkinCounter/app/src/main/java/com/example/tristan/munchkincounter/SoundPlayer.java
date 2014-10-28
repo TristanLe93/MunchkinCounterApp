@@ -43,6 +43,8 @@ public class SoundPlayer {
         soundPoolMap = new HashMap<Integer, Integer>();
 
         // load sounds
+        soundPoolMap.put(R.raw.levelup1, soundPool.load(context, R.raw.levelup1, 1));
+        soundPoolMap.put(R.raw.leveldown1, soundPool.load(context, R.raw.leveldown1, 1));
         soundPoolMap.put(R.raw.tick, soundPool.load(context, R.raw.tick, 1));
     }
 
