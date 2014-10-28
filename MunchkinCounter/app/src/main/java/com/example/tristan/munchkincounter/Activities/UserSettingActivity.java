@@ -93,7 +93,10 @@ public class UserSettingActivity extends PreferenceActivity {
     private void dialogAbout() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("About");
-        builder.setMessage("Developed by Tristan Le.");
+        builder.setMessage(
+            "This application is developed by Tristan Le.\n\nYour feedback are welcome!" +
+            "\n\nPlease send your feedback to:\ntristan.le6@gmail.com"
+        );
 
         // dismiss
         builder.setNegativeButton("You got it!", new DialogInterface.OnClickListener() {
@@ -109,7 +112,14 @@ public class UserSettingActivity extends PreferenceActivity {
     private void dialogDisclaimer() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Disclaimer");
-        builder.setMessage("Some disclaimer message saying that this app is not endorsed or associated with Steve Jackson Games.");
+        builder.setMessage(
+            "Munchkin is a trademark of Steve Jackson Games, and its rules and art " +
+            "are copyrighted by Steve Jackson Games. All rights are reserved by " +
+            "Steve Jackson Games. This application is the original creation of Tristan Le and is " +
+            "released for free distribution, and not for resale, under the permissions granted " +
+            "in the Steve Jackson Games Online Policy.\n\nThis application is not endorsed or " +
+            "associated with SJ Games."
+        );
 
         // dismiss
         builder.setNegativeButton("You got it!", new DialogInterface.OnClickListener() {

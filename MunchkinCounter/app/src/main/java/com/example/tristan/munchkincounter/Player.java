@@ -1,5 +1,6 @@
 package com.example.tristan.munchkincounter;
 
+
 /**
  * Player class contains information of the player's munchkin.
  * All stat changes are performed here.
@@ -9,6 +10,7 @@ public class Player {
     private int level;
     private int gear;
     private int bonus;
+    private boolean isMale;
 
     public String getName() {
         return name;
@@ -26,8 +28,13 @@ public class Player {
 
     public int getBonus() { return bonus; }
 
+    public boolean isMale() {
+        return isMale;
+    }
+
     public Player(String name) {
         this.name = name;
+        isMale = true;
         reset();
     }
 
@@ -57,6 +64,8 @@ public class Player {
     }
     public void incrementBonus() { bonus += 1; }
     public void decrementBonus() { bonus -= 1; }
+    public void setMale() { isMale = true; }
+    public void setFemale() { isMale = false; }
 
     @Override
     public String toString() {

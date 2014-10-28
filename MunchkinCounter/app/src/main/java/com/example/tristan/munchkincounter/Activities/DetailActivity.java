@@ -5,12 +5,9 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
-import android.support.v4.app.NavUtils;
-import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.WindowManager;
 import android.widget.TextView;
 
 import com.example.tristan.munchkincounter.Data;
@@ -87,6 +84,14 @@ public class DetailActivity extends BaseActivity {
         Typeface tf = FontCache.get("fonts/quasimodo.ttf", this.getBaseContext());
         TextView strength = (TextView)findViewById(R.id.txt_strength);
         strength.setTypeface(tf);
+
+        // set the gender
+        int selected = getResources().getColor(R.color.select_color);
+        if (player.isMale()) {
+            findViewById(R.id.btn_male).setBackgroundColor(selected);
+        } else {
+            findViewById(R.id.btn_female).setBackgroundColor(selected);
+        }
     }
 
     /**
@@ -129,6 +134,8 @@ public class DetailActivity extends BaseActivity {
         findViewById(R.id.btn_mod_up).setOnClickListener(onClickListener);
         findViewById(R.id.btn_mod_down).setOnClickListener(onClickListener);
         findViewById(R.id.btn_battle).setOnClickListener(onClickListener);
+        findViewById(R.id.btn_female).setOnClickListener(onClickListener);
+        findViewById(R.id.btn_male).setOnClickListener(onClickListener);
     }
 
     /**
@@ -172,6 +179,10 @@ public class DetailActivity extends BaseActivity {
                     btnModDecrement(); break;
                 case R.id.btn_battle:
                     btnGoToBattle(); break;
+                case R.id.btn_male:
+                    btnMale(); break;
+                case R.id.btn_female:
+                    btnFemale(); break;
             }
 
             updateUI();
@@ -214,5 +225,25 @@ public class DetailActivity extends BaseActivity {
     private void btnModDecrement() {
         SoundPlayer.playSound(R.raw.tick);
         player.decrementBonus();
+    }
+
+    private void btnMale() {
+        SoundPlayer.playSound(R.raw.tick);
+        int selected = getResources().getColor(R.color.select_color);
+        int notSelected = getResources().getColor(R.color.background_color);
+
+        findViewById(R.id.btn_male).setBackgroundColor(selected);
+        findViewById(R.id.btn_female).setBackgroundColor(notSelected);
+        player.setMale();
+    }
+
+    private void btnFemale() {
+        SoundPlayer.playSound(R.raw.tick);
+        int selected = getResources().getColor(R.color.select_color);
+        int notSelected = getResources().getColor(R.color.background_color);
+
+        findViewById(R.id.btn_female).setBackgroundColor(selected);
+        findViewById(R.id.btn_male).setBackgroundColor(notSelected);
+        player.setFemale();
     }
 }

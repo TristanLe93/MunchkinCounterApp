@@ -209,8 +209,8 @@ public class SummaryActivity extends BaseActivity {
     private View.OnClickListener onClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
-            int selected = getResources().getColor(R.color.background_color);
-            int notSelected = getResources().getColor(R.color.monster_color);
+            int selected = getResources().getColor(R.color.select_color);
+            int notSelected = getResources().getColor(R.color.background_color);
 
             switch (view.getId()) {
                 case R.id.btn_level:

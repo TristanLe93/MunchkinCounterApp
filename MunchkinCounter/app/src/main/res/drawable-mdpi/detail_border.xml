@@ -5,16 +5,16 @@
         <shape
             android:shape="rectangle">
             <stroke android:width="3dp" android:color="#FF000000" />
-            <solid android:color="@color/background_color" />
+            <solid android:color="#FFD277" />
 
         </shape>
     </item>
 
-    <item android:bottom="3dp">
+    <item android:top="3dp" android:bottom="3dp">
         <shape
             android:shape="rectangle">
-            <stroke android:width="5dp" android:color="@color/background_color" />
-            <solid android:color="#00000000" />
+            <stroke android:width="5dp" android:color="#FFD277" />
+            <solid android:color="#FFD277" />
         </shape>
     </item>
 
