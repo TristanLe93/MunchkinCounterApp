@@ -1,22 +1,22 @@
 package com.example.tristan.munchkincounter.Activities;
 
 import android.app.AlertDialog;
+import android.app.FragmentManager;
 import android.content.DialogInterface;
 import android.graphics.Typeface;
 import android.os.Bundle;
-import android.text.InputType;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
 import com.example.tristan.munchkincounter.Data;
 import com.example.tristan.munchkincounter.FontCache;
+import com.example.tristan.munchkincounter.NumberDialog;
 import com.example.tristan.munchkincounter.Player;
 import com.example.tristan.munchkincounter.R;
 import com.example.tristan.munchkincounter.SoundPlayer;
@@ -26,7 +26,7 @@ import java.util.ArrayList;
 /**
  * Created by Tristan on 7/10/2014.
  */
-public class CalculatorActivity extends BaseActivity {
+public class CalculatorActivity extends BaseActivity implements NumberDialog.Communicator {
     private Player player;
     private int playerModifier;
     private int monsterLevel;
@@ -36,6 +36,8 @@ public class CalculatorActivity extends BaseActivity {
     private int helperStrength;
 
     private int listPosition;
+
+    private int lastClickedViewId;
 
     /**
      * Initialise the battle screen
@@ -124,6 +126,7 @@ public class CalculatorActivity extends BaseActivity {
 
         // monster text values
         findViewById(R.id.txt_monster_level).setOnClickListener(numberListener);
+        findViewById(R.id.txt_monster_modifier).setOnClickListener(numberListener);
     }
 
     /**
@@ -318,24 +321,26 @@ public class CalculatorActivity extends BaseActivity {
     private View.OnClickListener numberListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            switch (v.getId()) {
-                case R.id.txt_monster_level:
-                    addNumberDialog(monsterLevel, "Monster Level");
-            }
+            lastClickedViewId = v.getId();
+            addNumberDialog();
         }
     };
 
-    private void addNumberDialog(final int variable, String title) {
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("Add " + title);
+    private void addNumberDialog() {
+        FragmentManager manager = getFragmentManager();
+        NumberDialog dialog = new NumberDialog();
+        dialog.show(manager, "numberDialog");
+    }
 
-        // Create EditText for entry
-        final EditText input = new EditText(this);
-        input.setInputType(InputType.TYPE_NUMBER_FLAG_SIGNED);
-        builder.setView(input);
+    @Override
+    public void onDialogConfirm(int number) {
+        switch (lastClickedViewId) {
+            case R.id.txt_monster_level:
+                monsterLevel += number; break;
+            case R.id.txt_monster_modifier:
+                monsterModifier += number; break;
+        }
 
-        // show dialog with keyboard input
-        AlertDialog dialog = builder.create();
-        dialog.show();
+        updateUI();
     }
 }
