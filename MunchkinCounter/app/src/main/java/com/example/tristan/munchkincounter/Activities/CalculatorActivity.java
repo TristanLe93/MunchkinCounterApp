@@ -4,7 +4,6 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.graphics.Typeface;
 import android.os.Bundle;
-import android.os.Handler;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -16,7 +15,6 @@ import android.widget.TextView;
 
 import com.example.tristan.munchkincounter.Data;
 import com.example.tristan.munchkincounter.FontCache;
-import com.example.tristan.munchkincounter.NumberControl;
 import com.example.tristan.munchkincounter.Player;
 import com.example.tristan.munchkincounter.R;
 import com.example.tristan.munchkincounter.SoundPlayer;
@@ -168,8 +166,7 @@ public class CalculatorActivity extends BaseActivity {
             Player p = Data.adapter.getItem(i);
 
             if (listPosition == i) {
-                String doppelText = doppelgangerText(p);
-                playerData.add(doppelText);
+                playerData.add(p.returnDoppelganger());
             } else {
                 playerData.add(p.toString());
             }
@@ -207,7 +204,7 @@ public class CalculatorActivity extends BaseActivity {
                     helper = "";
                 } else if (listPosition == position-1) {
                     // doppelganger was selected
-                    helperStrength = player.getLevel() + player.getGear() + playerModifier;
+                    helperStrength = player.getTotal() + playerModifier;
                     helper = " + Doppelganger(" + helperStrength + ")";
                 } else  {
                     // grab the helper's details
@@ -220,17 +217,6 @@ public class CalculatorActivity extends BaseActivity {
                 dialog.dismiss();
             }
         });
-    }
-
-    private String doppelgangerText(Player p) {
-        StringBuilder sb = new StringBuilder();
-        sb.append("Doppelganger");
-        sb.append(" - Level: ");
-        sb.append(p.getLevel());
-        sb.append(" Total: ");
-        sb.append(p.getLevel()+p.getGear()+playerModifier);
-
-        return sb.toString();
     }
 
     /**
