@@ -78,10 +78,10 @@ public class SummaryActivity extends BaseActivity {
                 showInputDialog();
                 return true;
             case R.id.reset_players:
-                dialogReset();
+                dialogDeleteGame();
                 return true;
             case R.id.delete_players:
-                dialogDelete();
+                dialogResetGame();
                 return true;
             case R.id.settings:
                 Intent i = new Intent(this, UserSettingActivity.class);
@@ -119,7 +119,7 @@ public class SummaryActivity extends BaseActivity {
     // Shows dialog to input new player name
     private void showInputDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setMessage("Add new player");
+        builder.setTitle("Add new player");
 
         // Create EditText for entry
         final EditText input = new EditText(this);
@@ -158,23 +158,23 @@ public class SummaryActivity extends BaseActivity {
         overridePendingTransition(R.anim.push_right_in, R.anim.push_left_out);
     }
 
-    private void dialogDelete() {
+    private void dialogResetGame() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("Are you sure?");
-        builder.setMessage("Action: New Game.");
+        builder.setTitle("New Game?");
+        builder.setMessage("Reset all players for a new game of Munchkin.");
 
-        // dismiss
-        builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+        // delete all players from the game
+        builder.setPositiveButton("New Game", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
+                Data.adapter.resetAllPlayers();
             }
         });
 
-        // delete all players from the game
-        builder.setPositiveButton("YES", new DialogInterface.OnClickListener() {
+        // dismiss
+        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
-                Data.adapter.deleteAllPlayers();
             }
         });
 
@@ -182,23 +182,23 @@ public class SummaryActivity extends BaseActivity {
         dialog.show();
     }
 
-    private void dialogReset() {
+    private void dialogDeleteGame() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("Are you sure?");
-        builder.setMessage("Action: Reset Game.");
+        builder.setTitle("Delete Game?");
+        builder.setMessage("Delete all players from the scoreboard.");
 
-        // dismiss
-        builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+        // delete all players from the game
+        builder.setPositiveButton("Delete All", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
+                Data.adapter.deleteAllPlayers();
             }
         });
 
-        // delete all players from the game
-        builder.setPositiveButton("YES", new DialogInterface.OnClickListener() {
+        // dismiss
+        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
-                Data.adapter.resetAllPlayers();
             }
         });
 

@@ -180,7 +180,7 @@
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Battle Monster"
+            android:text="Battle Calculator"
             android:id="@+id/btn_battle"
             android:layout_centerVertical="true"
             android:layout_centerHorizontal="true" />

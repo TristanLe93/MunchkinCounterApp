@@ -95,18 +95,18 @@ public class DetailActivity extends BaseActivity {
      */
     private void dialogDelete() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("Are you sure?");
-        builder.setMessage("Action: Remove player " + player.getName() + ".");
+        builder.setTitle("Remove player?");
+        builder.setMessage("Remove " + player.getName() + " from the game.");
 
         // dismiss
-        builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
             }
         });
 
         // remove the player from the game
-        builder.setPositiveButton("YES", new DialogInterface.OnClickListener() {
+        builder.setPositiveButton("Remove " + player.getName(), new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 Data.adapter.deletePlayer(position);
