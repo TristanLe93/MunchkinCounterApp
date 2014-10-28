@@ -11,12 +11,10 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.tristan.munchkincounter.Data;
 import com.example.tristan.munchkincounter.FontCache;
-import com.example.tristan.munchkincounter.NumberControl;
 import com.example.tristan.munchkincounter.Player;
 import com.example.tristan.munchkincounter.R;
 import com.example.tristan.munchkincounter.SoundPlayer;
@@ -89,9 +87,6 @@ public class DetailActivity extends BaseActivity {
         Typeface tf = FontCache.get("fonts/quasimodo.ttf", this.getBaseContext());
         TextView strength = (TextView)findViewById(R.id.txt_strength);
         strength.setTypeface(tf);
-
-        NumberControl modifier = (NumberControl)findViewById(R.id.modifier_control);
-        modifier.setNumberValue(player.getBonus());
     }
 
     /**
@@ -131,9 +126,9 @@ public class DetailActivity extends BaseActivity {
         findViewById(R.id.btn_level_down).setOnClickListener(onClickListener);
         findViewById(R.id.btn_gear_up).setOnClickListener(onClickListener);
         findViewById(R.id.btn_gear_down).setOnClickListener(onClickListener);
+        findViewById(R.id.btn_mod_up).setOnClickListener(onClickListener);
+        findViewById(R.id.btn_mod_down).setOnClickListener(onClickListener);
         findViewById(R.id.btn_battle).setOnClickListener(onClickListener);
-
-        findViewById(R.id.modifier_control).setOnClickListener(update);
     }
 
     /**
@@ -153,6 +148,7 @@ public class DetailActivity extends BaseActivity {
         setTextValue(R.id.txt_strength, player.getTotal());
         setTextValue(R.id.txt_level, player.getLevel());
         setTextValue(R.id.txt_gear, player.getGear());
+        setTextValue(R.id.txt_modifier, player.getBonus());
     }
 
     /**
@@ -170,17 +166,14 @@ public class DetailActivity extends BaseActivity {
                     btnGearIncrement(); break;
                 case R.id.btn_gear_down:
                     btnGearDecrement(); break;
+                case R.id.btn_mod_up:
+                    btnModIncrement(); break;
+                case R.id.btn_mod_down:
+                    btnModDecrement(); break;
                 case R.id.btn_battle:
                     btnGoToBattle(); break;
             }
 
-            updateUI();
-        }
-    };
-
-    private View.OnClickListener update = new View.OnClickListener() {
-        @Override
-        public void onClick(View view) {
             updateUI();
         }
     };

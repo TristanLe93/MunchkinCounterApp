@@ -5,8 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/background_color"
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:android="http://schemas.android.com/apk/res/android">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -128,13 +127,48 @@
                 android:src="@drawable/ic_arrow_down" />
         </LinearLayout>
 
-        <com.example.tristan.munchkincounter.NumberControl
-            android:id="@+id/modifier_control"
+        <LinearLayout
+            android:orientation="vertical"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:titleText="Modifier"
-            app:numberSize="@dimen/detail_number">
-            </com.example.tristan.munchkincounter.NumberControl>
+            android:layout_weight="1"
+            android:layout_gravity="center">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="Modifier"
+                android:id="@+id/textView3"
+                android:layout_gravity="center_horizontal"
+                android:typeface="serif"
+                android:textSize="@dimen/player_name" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/btn_mod_up"
+                android:layout_gravity="center_horizontal"
+                android:src="@drawable/ic_arrow_up" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="0"
+                android:id="@+id/txt_modifier"
+                android:layout_gravity="center_horizontal"
+                android:typeface="serif"
+                android:textSize="@dimen/detail_number" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/btn_mod_down"
+                android:layout_gravity="center_horizontal"
+                android:src="@drawable/ic_arrow_down" />
+
+        </LinearLayout>
     </LinearLayout>
 
     <RelativeLayout
