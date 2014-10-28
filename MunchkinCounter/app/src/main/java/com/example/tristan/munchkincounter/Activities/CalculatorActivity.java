@@ -3,6 +3,7 @@ package com.example.tristan.munchkincounter.Activities;
 import android.app.AlertDialog;
 import android.app.FragmentManager;
 import android.content.DialogInterface;
+import android.graphics.Paint;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.Menu;
@@ -104,6 +105,12 @@ public class CalculatorActivity extends BaseActivity implements NumberDialog.Com
         // (There is a bug that changes the color so we going to override it for now....)
         findViewById(R.id.monster_panel).setBackgroundColor(getResources().getColor(R.color.monster_color));
         findViewById(R.id.monster_stats_panel).setBackgroundColor(getResources().getColor(R.color.monster_color));
+
+        // underline monster text
+        TextView monLv = (TextView)findViewById(R.id.txt_monster_level);
+        monLv.setPaintFlags(Paint.UNDERLINE_TEXT_FLAG);
+        TextView monMod = (TextView)findViewById(R.id.txt_monster_modifier);
+        monMod.setPaintFlags(Paint.UNDERLINE_TEXT_FLAG);
     }
 
     /**
