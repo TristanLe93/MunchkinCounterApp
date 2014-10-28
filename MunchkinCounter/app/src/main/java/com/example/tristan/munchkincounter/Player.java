@@ -8,7 +8,7 @@ public class Player {
     private String name;
     private int level;
     private int gear;
-    public int bonus;
+    private int bonus;
 
     public String getName() {
         return name;

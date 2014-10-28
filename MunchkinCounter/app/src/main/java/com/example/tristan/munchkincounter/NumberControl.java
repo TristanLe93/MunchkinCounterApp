@@ -20,14 +20,6 @@ public class NumberControl extends LinearLayout {
     private ImageView downBtn;
     private boolean canGoNegative;
 
-    public int getNumberValue() {
-        return numberValue;
-    }
-
-    public void setNumberValue(int value) {
-        numberValue = value;
-    }
-
     /**
      * Initialise the NumberControl
      */
@@ -37,7 +29,7 @@ public class NumberControl extends LinearLayout {
         TypedArray a = context.obtainStyledAttributes(attrs,
                 R.styleable.NumberControl, 0, 0);
         String titleText = a.getString(R.styleable.NumberControl_titleText);
-        float numberSize = a.getDimension(R.styleable.NumberControl_numberSize, 24);
+        int numberSize = a.getInt(R.styleable.NumberControl_numberSize, 24);
         Boolean negative = a.getBoolean(R.styleable.NumberControl_negativeValue, true);
         a.recycle();
 
@@ -68,6 +60,7 @@ public class NumberControl extends LinearLayout {
                 increment();
             }
         });
+
         downBtn.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
