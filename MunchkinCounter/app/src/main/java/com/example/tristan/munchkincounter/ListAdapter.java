@@ -172,6 +172,8 @@ public class ListAdapter extends BaseAdapter {
             holder.playerNameView = (TextView)convertView.findViewById(R.id.playerNameText);
             holder.levelView = (TextView)convertView.findViewById(R.id.levelNumberText);
             holder.totalView = (TextView)convertView.findViewById(R.id.totalNumberText);
+            holder.levelText = (TextView)convertView.findViewById(R.id.levelText);
+            holder.totalText = (TextView)convertView.findViewById(R.id.totalText);
             convertView.setTag(holder);
         } else {
             holder = (ViewHolder)convertView.getTag();
@@ -188,6 +190,8 @@ public class ListAdapter extends BaseAdapter {
         holder.playerNameView.setTypeface(tf);
         holder.levelView.setTypeface(tf);
         holder.totalView.setTypeface(tf);
+        holder.levelText.setTypeface(tf);
+        holder.totalText.setTypeface(tf);
 
         return convertView;
     }
@@ -199,5 +203,7 @@ public class ListAdapter extends BaseAdapter {
         TextView playerNameView;
         TextView levelView;
         TextView totalView;
+        TextView levelText;
+        TextView totalText;
     }
 }
