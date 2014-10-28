@@ -69,15 +69,4 @@ public class Player {
 
         return sb.toString();
     }
-
-    public String returnDoppelganger() {
-        StringBuilder sb = new StringBuilder();
-        sb.append("Doppelganger");
-        sb.append(" - Level: ");
-        sb.append(level);
-        sb.append(" Total: ");
-        sb.append(getTotal());
-
-        return sb.toString();
-    }
 }

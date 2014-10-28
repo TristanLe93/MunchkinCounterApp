@@ -18,7 +18,7 @@
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:text="Strength"
-            android:id="@+id/textView"
+            android:id="@+id/txt_title"
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
             android:typeface="serif"
@@ -30,7 +30,7 @@
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:text="20"
             android:id="@+id/txt_strength"
-            android:layout_below="@+id/textView"
+            android:layout_below="@+id/txt_title"
             android:layout_centerHorizontal="true"
             android:typeface="serif"
             android:textSize="@dimen/strength_number" />
