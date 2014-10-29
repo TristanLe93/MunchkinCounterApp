@@ -3,6 +3,7 @@ package com.example.tristan.munchkincounter.Activities;
 import android.app.AlertDialog;
 import android.app.FragmentManager;
 import android.content.DialogInterface;
+import android.graphics.Paint;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.Menu;
@@ -127,6 +128,12 @@ public class CalculatorActivity extends BaseActivity implements NumberDialog.Com
         // monster text values
         findViewById(R.id.txt_monster_level).setOnClickListener(numberListener);
         findViewById(R.id.txt_monster_modifier).setOnClickListener(numberListener);
+
+        // underline monster values
+        TextView monLvl = (TextView)findViewById(R.id.txt_monster_level);
+        monLvl.setPaintFlags(Paint.UNDERLINE_TEXT_FLAG);
+        TextView monMod = (TextView)findViewById(R.id.txt_monster_modifier);
+        monMod.setPaintFlags(Paint.UNDERLINE_TEXT_FLAG);
     }
 
     /**
