@@ -29,8 +29,8 @@ public class AdFragment extends Fragment {
 
         // Create an ad request
         AdRequest adRequest = new AdRequest.Builder()
-                //.addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
-                //.addTestDevice("ABCDEF012345")
+                .addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
+                .addTestDevice("5E88667E634FF74B042F4815C25927A8")
                 .build();
 
         // start loading the app in the background
