@@ -5,7 +5,7 @@
     <application
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
-        android:label="@string/summary"
+        android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
             android:name=".Activities.SummaryActivity"
@@ -13,7 +13,7 @@
             android:screenOrientation="portrait"
             android:label="@string/summary"
             android:launchMode="singleTop">
-            <intent-filter>
+            <intent-filter android:label="M. Adventure">
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
