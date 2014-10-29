@@ -11,6 +11,8 @@
     <string name="enable_sounds">Enable Sounds</string>
     <string name="death_penalty">Additional Death Penalty</string>
 
+    <string name="banner_ad_unit_id">ca-app-pub-3940256099942544/6300978111</string>
+
     <color name="background_color">#ffc654</color>
     <color name="text_color">#270b00</color>
     <color name="monster_color">#c0b8a1</color>

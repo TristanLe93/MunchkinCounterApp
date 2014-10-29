@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.InputType;
 import android.view.ContextMenu;
-import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -14,13 +13,14 @@ import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ListView;
-import android.widget.TextView;
 
 import com.example.tristan.munchkincounter.Data;
 import com.example.tristan.munchkincounter.ListAdapter;
 import com.example.tristan.munchkincounter.Player;
 import com.example.tristan.munchkincounter.R;
 import com.example.tristan.munchkincounter.SoundPlayer;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
 
 
 public class SummaryActivity extends BaseActivity {
@@ -56,7 +56,6 @@ public class SummaryActivity extends BaseActivity {
         SoundPlayer.getInstance();
         SoundPlayer.initSounds(this);
     }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
