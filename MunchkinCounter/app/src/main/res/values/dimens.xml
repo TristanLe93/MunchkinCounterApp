@@ -8,6 +8,6 @@
     <dimen name="detail_number">64sp</dimen>
     <dimen name="total_number">44sp</dimen>
     <dimen name="object_name">32sp</dimen>
-    <dimen name="level_size">28dp</dimen>
-    <dimen name="strength_scoreboard">48dp</dimen>
+    <dimen name="level_size">28sp</dimen>
+    <dimen name="strength_scoreboard">48sp</dimen>
 </resources>

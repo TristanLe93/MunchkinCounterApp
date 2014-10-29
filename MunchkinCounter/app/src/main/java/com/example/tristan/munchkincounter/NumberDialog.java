@@ -54,8 +54,10 @@ public class NumberDialog extends DialogFragment implements View.OnClickListener
                 break;
             case R.id.btn_ok:
                 String value = edit.getText().toString();
-                int number = Integer.parseInt(value);
-                communicator.onDialogConfirm(number);
+                if (value.length() > 0 && isInteger(value)) {
+                    int number = Integer.parseInt(value);
+                    communicator.onDialogConfirm(number);
+                }
                 break;
         }
 
@@ -64,5 +66,15 @@ public class NumberDialog extends DialogFragment implements View.OnClickListener
 
     public interface Communicator {
         public void onDialogConfirm(int number);
+    }
+
+    private boolean isInteger(String s) {
+        try {
+            Integer.parseInt(s);
+        } catch (NumberFormatException e) {
+            return false;
+        }
+
+        return true;
     }
 }

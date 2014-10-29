@@ -278,14 +278,16 @@
                 android:src="@drawable/ic_arrow_up" />
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="70dp"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:text="10"
                 android:id="@+id/txt_monster_level"
                 android:layout_gravity="center_horizontal"
                 android:typeface="serif"
-                android:textSize="@dimen/number_size" />
+                android:textSize="@dimen/number_size"
+                android:gravity="center"
+                android:background="#9F9578" />
 
             <ImageView
                 android:layout_width="wrap_content"
@@ -320,14 +322,16 @@
                 android:src="@drawable/ic_arrow_up" />
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="70dp"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:text="10"
                 android:id="@+id/txt_monster_modifier"
                 android:layout_gravity="center_horizontal"
                 android:typeface="serif"
-                android:textSize="@dimen/number_size" />
+                android:textSize="@dimen/number_size"
+                android:gravity="center"
+                android:background="#9F9578" />
 
             <ImageView
                 android:layout_width="wrap_content"
