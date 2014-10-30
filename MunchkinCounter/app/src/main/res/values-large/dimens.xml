@@ -12,18 +12,18 @@
     <dimen name="strength_number">108sp</dimen>
 
     <!-- detail screen -->
-    <dimen name="strength_text">40sp</dimen>
-    <dimen name="strength_detail_number">96sp</dimen>
-    <dimen name="stat_title">28sp</dimen>
-    <dimen name="stat_number">64sp</dimen>
-    <dimen name="button_size">28sp</dimen>
+    <dimen name="strength_text">72sp</dimen>
+    <dimen name="strength_detail_number">244sp</dimen>
+    <dimen name="stat_title">56sp</dimen>
+    <dimen name="stat_number">108sp</dimen>
+    <dimen name="button_size">56sp</dimen>
 
     <!-- calculator screen -->
-    <dimen name="calculator_stat_title">24sp</dimen>
-    <dimen name="calculator_stat_number">32sp</dimen>
-    <dimen name="calculator_player_name">36sp</dimen>
-    <dimen name="stat_total">48sp</dimen>
-    <dimen name="vs_text">40sp</dimen>
+    <dimen name="calculator_stat_title">52sp</dimen>
+    <dimen name="calculator_stat_number">72sp</dimen>
+    <dimen name="calculator_player_name">64sp</dimen>
+    <dimen name="stat_total">92sp</dimen>
+    <dimen name="vs_text">64sp</dimen>
 
     <!-- calculator enter number dialog -->
     <dimen name="number_dialog_size">64sp</dimen>
