@@ -18,7 +18,7 @@
         android:layout_alignParentStart="true"
         android:textSize="@dimen/level_text"
         android:layout_marginTop="-10dp"
-        android:layout_marginLeft="50dp"/>
+        android:layout_marginLeft="70dp"/>
 
     <TextView
         android:layout_width="wrap_content"
@@ -43,7 +43,7 @@
         android:textSize="@dimen/strength_number"
         android:textColor="@color/text_color"
         android:typeface="serif"
-        android:layout_marginLeft="110dp"
+        android:layout_marginLeft="100dp"
         android:layout_centerVertical="true"
         android:layout_alignLeft="@+id/strText"
         android:layout_alignStart="@+id/strText" />
@@ -52,7 +52,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="20"
+        android:text="10"
         android:id="@+id/levelNumberText"
         android:textSize="@dimen/level_text"
         android:textColor="@color/text_color"
@@ -73,6 +73,6 @@
         android:layout_centerVertical="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
-        android:layout_marginRight="165dp"
+        android:layout_marginRight="180dp"
         android:textSize="@dimen/sort_text" />
 </RelativeLayout>
