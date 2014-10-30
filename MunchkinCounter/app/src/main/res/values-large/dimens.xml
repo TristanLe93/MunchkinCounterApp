@@ -1,0 +1,31 @@
+<resources>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">64dp</dimen>
+    <dimen name="activity_vertical_margin">64dp</dimen>
+
+    <!-- summary screen -->
+    <dimen name="sort_text">44sp</dimen>
+
+    <!-- player list -->
+    <dimen name="level_text">48sp</dimen>
+    <dimen name="player_name_text">84sp</dimen>
+    <dimen name="strength_number">108sp</dimen>
+
+    <!-- detail screen -->
+    <dimen name="strength_text">40sp</dimen>
+    <dimen name="strength_detail_number">96sp</dimen>
+    <dimen name="stat_title">28sp</dimen>
+    <dimen name="stat_number">64sp</dimen>
+    <dimen name="button_size">28sp</dimen>
+
+    <!-- calculator screen -->
+    <dimen name="calculator_stat_title">24sp</dimen>
+    <dimen name="calculator_stat_number">32sp</dimen>
+    <dimen name="calculator_player_name">36sp</dimen>
+    <dimen name="stat_total">48sp</dimen>
+    <dimen name="vs_text">40sp</dimen>
+
+    <!-- calculator enter number dialog -->
+    <dimen name="number_dialog_size">64sp</dimen>
+
+</resources>

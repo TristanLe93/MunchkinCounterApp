@@ -226,7 +226,7 @@
             android:layout_centerVertical="true"
             android:layout_centerHorizontal="true"
             android:typeface="serif"
-            android:textSize="@dimen/sort_text" />
+            android:textSize="@dimen/button_size" />
     </RelativeLayout>
 
 </LinearLayout>
