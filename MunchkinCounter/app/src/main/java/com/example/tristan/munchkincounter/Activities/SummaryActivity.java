@@ -19,8 +19,6 @@ import com.example.tristan.munchkincounter.ListAdapter;
 import com.example.tristan.munchkincounter.Player;
 import com.example.tristan.munchkincounter.R;
 import com.example.tristan.munchkincounter.SoundPlayer;
-import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.AdView;
 
 
 public class SummaryActivity extends BaseActivity {

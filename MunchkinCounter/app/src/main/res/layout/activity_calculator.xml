@@ -30,7 +30,7 @@
                 android:id="@+id/textView5"
                 android:layout_gravity="center_horizontal"
                 android:typeface="serif"
-                android:textSize="@dimen/player_name" />
+                android:textSize="@dimen/calculator_stat_title" />
 
             <ImageView
                 android:layout_width="wrap_content"
@@ -48,7 +48,7 @@
                 android:id="@+id/txt_player_level"
                 android:layout_gravity="center_horizontal"
                 android:typeface="serif"
-                android:textSize="@dimen/number_size" />
+                android:textSize="@dimen/calculator_stat_number" />
 
             <ImageView
                 android:layout_width="wrap_content"
@@ -74,7 +74,7 @@
                 android:id="@+id/textView6"
                 android:layout_gravity="center_horizontal"
                 android:typeface="serif"
-                android:textSize="@dimen/player_name" />
+                android:textSize="@dimen/calculator_stat_title" />
 
             <ImageView
                 android:layout_width="wrap_content"
@@ -91,7 +91,7 @@
                 android:id="@+id/txt_player_gear"
                 android:layout_gravity="center_horizontal"
                 android:typeface="serif"
-                android:textSize="@dimen/number_size" />
+                android:textSize="@dimen/calculator_stat_number" />
 
             <ImageView
                 android:layout_width="wrap_content"
@@ -115,7 +115,7 @@
                 android:text="Modifier"
                 android:id="@+id/textView7"
                 android:layout_gravity="center_horizontal"
-                android:textSize="@dimen/player_name"
+                android:textSize="@dimen/calculator_stat_title"
                 android:typeface="serif" />
 
             <ImageView
@@ -133,7 +133,7 @@
                 android:id="@+id/txt_player_modifier"
                 android:layout_gravity="center_horizontal"
                 android:typeface="serif"
-                android:textSize="@dimen/number_size" />
+                android:textSize="@dimen/calculator_stat_number" />
 
             <ImageView
                 android:layout_width="wrap_content"
@@ -156,7 +156,7 @@
             android:text="Player_Name"
             android:id="@+id/txt_player_name"
             android:typeface="serif"
-            android:textSize="@dimen/object_name"
+            android:textSize="@dimen/calculator_player_name"
             android:layout_alignParentTop="true"
             android:layout_centerInParent="true"
             android:gravity="center_horizontal"/>
@@ -184,7 +184,7 @@
                 android:layout_alignParentStart="false"
                 android:layout_centerInParent="true"
                 android:typeface="serif"
-                android:textSize="@dimen/total_number" />
+                android:textSize="@dimen/stat_total" />
         </RelativeLayout>
 
         <RelativeLayout
@@ -202,7 +202,7 @@
                 android:layout_alignParentLeft="false"
                 android:layout_alignParentStart="false"
                 android:layout_centerInParent="true"
-                android:textSize="@dimen/player_name"
+                android:textSize="@dimen/vs_text"
                 android:typeface="serif" />
         </RelativeLayout>
 
@@ -220,7 +220,7 @@
                 android:id="@+id/txt_monster_strength"
                 android:layout_centerVertical="true"
                 android:layout_centerHorizontal="true"
-                android:textSize="@dimen/total_number"
+                android:textSize="@dimen/stat_total"
                 android:typeface="serif" />
         </RelativeLayout>
     </LinearLayout>
@@ -237,7 +237,7 @@
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:text="Monster"
             android:id="@+id/txt_monster_name"
-            android:textSize="@dimen/object_name"
+            android:textSize="@dimen/calculator_player_name"
             android:typeface="serif"
             android:layout_alignParentTop="true"
             android:layout_centerInParent="true" />
@@ -267,7 +267,7 @@
                 android:text="Level"
                 android:id="@+id/textView12"
                 android:layout_gravity="center_horizontal"
-                android:textSize="@dimen/player_name"
+                android:textSize="@dimen/calculator_stat_title"
                 android:typeface="serif" />
 
             <ImageView
@@ -285,7 +285,7 @@
                 android:id="@+id/txt_monster_level"
                 android:layout_gravity="center_horizontal"
                 android:typeface="serif"
-                android:textSize="@dimen/number_size"
+                android:textSize="@dimen/calculator_stat_number"
                 android:gravity="center"
                 android:background="#9F9578" />
 
@@ -311,7 +311,7 @@
                 android:text="Modifier"
                 android:id="@+id/textView14"
                 android:layout_gravity="center_horizontal"
-                android:textSize="@dimen/player_name"
+                android:textSize="@dimen/calculator_stat_title"
                 android:typeface="serif" />
 
             <ImageView
@@ -329,7 +329,7 @@
                 android:id="@+id/txt_monster_modifier"
                 android:layout_gravity="center_horizontal"
                 android:typeface="serif"
-                android:textSize="@dimen/number_size"
+                android:textSize="@dimen/calculator_stat_number"
                 android:gravity="center"
                 android:background="#9F9578" />
 

@@ -21,7 +21,7 @@
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
             android:typeface="serif"
-            android:textSize="@dimen/number_size" />
+            android:textSize="@dimen/strength_text" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -32,7 +32,7 @@
             android:layout_below="@+id/txt_title"
             android:layout_centerHorizontal="true"
             android:typeface="serif"
-            android:textSize="@dimen/strength_number" />
+            android:textSize="@dimen/strength_detail_number" />
 
         <RelativeLayout
             android:layout_width="wrap_content"
@@ -99,7 +99,7 @@
                 android:id="@+id/textview"
                 android:layout_gravity="center_horizontal"
                 android:typeface="serif"
-                android:textSize="@dimen/player_name" />
+                android:textSize="@dimen/stat_title" />
 
             <ImageView
                 android:layout_width="wrap_content"
@@ -116,7 +116,7 @@
                 android:id="@+id/txt_level"
                 android:layout_gravity="center_horizontal"
                 android:typeface="serif"
-                android:textSize="@dimen/detail_number" />
+                android:textSize="@dimen/stat_number" />
 
             <ImageView
                 android:layout_width="wrap_content"
@@ -141,7 +141,7 @@
                 android:id="@+id/textView2"
                 android:layout_gravity="center_horizontal"
                 android:typeface="serif"
-                android:textSize="@dimen/player_name" />
+                android:textSize="@dimen/stat_title" />
 
             <ImageView
                 android:layout_width="wrap_content"
@@ -158,7 +158,7 @@
                 android:id="@+id/txt_gear"
                 android:layout_gravity="center_horizontal"
                 android:typeface="serif"
-                android:textSize="@dimen/detail_number" />
+                android:textSize="@dimen/stat_number" />
 
             <ImageView
                 android:layout_width="wrap_content"
@@ -183,7 +183,7 @@
                 android:id="@+id/textView3"
                 android:layout_gravity="center_horizontal"
                 android:typeface="serif"
-                android:textSize="@dimen/player_name" />
+                android:textSize="@dimen/stat_title" />
 
             <ImageView
                 android:layout_width="wrap_content"
@@ -200,7 +200,7 @@
                 android:id="@+id/txt_modifier"
                 android:layout_gravity="center_horizontal"
                 android:typeface="serif"
-                android:textSize="@dimen/detail_number" />
+                android:textSize="@dimen/stat_number" />
 
             <ImageView
                 android:layout_width="wrap_content"
@@ -226,7 +226,7 @@
             android:layout_centerVertical="true"
             android:layout_centerHorizontal="true"
             android:typeface="serif"
-            android:textSize="@dimen/player_name" />
+            android:textSize="@dimen/button_size" />
     </RelativeLayout>
 
 </LinearLayout>
