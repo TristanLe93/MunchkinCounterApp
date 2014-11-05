@@ -221,12 +221,12 @@ public class CalculatorActivity extends BaseActivity implements NumberDialog.Com
                     // doppelganger was selected
                     Player p = Data.adapter.getItem(listPosition);
                     helperStrength = player.getLevel() + player.getGear() + playerModifier;
-                    helper = " + " + p.getName() + " [" + helperStrength + "]";
+                    helper = " + " + p.getName() + "[" + helperStrength + "]";
                 } else  {
                     // grab the helper's details
                     Player p = Data.adapter.getItem(position-1);
                     helperStrength = p.getTotal();
-                    helper = " + " + p.getName() + " [" + helperStrength + "]";
+                    helper = " + " + p.getName() + "[" + helperStrength + "]";
                 }
 
                 updateUI();
@@ -265,8 +265,21 @@ public class CalculatorActivity extends BaseActivity implements NumberDialog.Com
         // assign total strength values
         int playerStrength = player.getLevel() + player.getGear() + playerModifier + helperStrength;
         int monsterStrength = monsterLevel + monsterModifier;
-        assignText(R.id.txt_player_strength, playerStrength);
-        assignText(R.id.txt_monster_strength, monsterStrength);
+
+        // store to alter them
+        String pStr = Integer.toString(playerStrength);
+        String mStr = Integer.toString(monsterStrength);
+
+        // add "+" sign to number if greater than 99
+        if (playerStrength > 99) {
+            pStr = "99+";
+        }
+        if (monsterStrength > 99) {
+            mStr = "99+";
+        }
+
+        assignText(R.id.txt_player_strength, pStr);
+        assignText(R.id.txt_monster_strength, mStr);
     }
 
     /**

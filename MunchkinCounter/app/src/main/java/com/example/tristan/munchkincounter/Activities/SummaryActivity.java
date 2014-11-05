@@ -232,6 +232,7 @@ public class SummaryActivity extends BaseActivity {
                     break;
             }
 
+            SoundPlayer.playSound(R.raw.tick);
             Data.adapter.sortList();
             Data.adapter.notifyDataSetChanged();
         }

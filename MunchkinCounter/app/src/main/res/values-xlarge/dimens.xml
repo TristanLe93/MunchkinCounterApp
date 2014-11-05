@@ -23,7 +23,7 @@
     <dimen name="calculator_stat_number">72sp</dimen>
     <dimen name="calculator_player_name">64sp</dimen>
     <dimen name="stat_total">92sp</dimen>
-    <dimen name="vs_text">64sp</dimen>
+    <dimen name="vs_text">56sp</dimen>
 
     <!-- calculator enter number dialog -->
     <dimen name="number_dialog_size">64sp</dimen>
